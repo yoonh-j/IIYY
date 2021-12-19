@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.yoond.iiyy.views.HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.yoond.iiyy.views.CalendarFragment"
+        tools:layout="@layout/fragment_calendar"/>
+
+    <fragment
+        android:id="@+id/nav_add"
+        android:name="com.yoond.iiyy.views.AddFragment"
+        tools:layout="@layout/fragment_add"/>
+
+    <fragment
+        android:id="@+id/nav_community"
+        android:name="com.yoond.iiyy.views.CommunityFragment"
+        tools:layout="@layout/fragment_community">
+
+        <action
+            android:id="@+id/action_community_fragment_to_community_detail_fragment"
+            app:destination="@id/nav_community_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim"/>
+
+        <action
+            android:id="@+id/action_community_fragment_to_community_write_fragment"
+            app:destination="@id/nav_community_write"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_community_detail"
+        android:name="com.yoond.iiyy.views.CommunityDetailFragment"
+        tools:layout="@layout/fragment_community_detail">
+        <argument
+            android:name="articleKey"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_community_write"
+        android:name="com.yoond.iiyy.views.CommunityWriteFragment"
+        tools:layout="@layout/fragment_community_write">
+        <argument
+            android:name="articleKey"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_preference"
+        android:name="com.yoond.iiyy.views.PreferenceFragment"
+        tools:layout="@layout/fragment_preference"/>
+</navigation>
