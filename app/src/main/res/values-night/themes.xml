@@ -25,8 +25,4 @@
     </style>
 
     <style name="Theme.IIYY.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
-
-    <style name="TextAppearance.IIYY.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
 </resources>

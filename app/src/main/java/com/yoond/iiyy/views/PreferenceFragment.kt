@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceFragmentCompat
+import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
 
 class PreferenceFragment : Fragment() {
@@ -22,5 +23,10 @@ class PreferenceFragment : Fragment() {
             ?.commit()
         return root
     }
-// TODO: fragment transaction 시 fade-in이 없어짐
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_preference))
+    }
+    // TODO: fragment transaction 시 fade-in이 없어짐
 }

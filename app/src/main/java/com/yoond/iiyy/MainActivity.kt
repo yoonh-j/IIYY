@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        setSupportActionBar(binding.toolbar)
+//        setToolbarTitle(resources.getString(R.string.title_home))
         initBottomNavBar()
     }
 
@@ -24,5 +25,9 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bottomNav.setupWithNavController(navController)
+    }
+
+    fun setToolbarTitle(title: String) {
+        binding.toolbar.title = title
     }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +37,11 @@ class CommunityFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_community, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_community))
     }
 
     companion object {
