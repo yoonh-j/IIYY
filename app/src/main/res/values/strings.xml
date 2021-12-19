@@ -17,10 +17,10 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <!-- Titles -->
-    <string name="title_home">홈</string>
-    <string name="title_calendar">월별 기록</string>
-    <string name="title_add">영양제 추가</string>
-    <string name="title_community">커뮤니티</string>
-    <string name="title_preference">설정</string>
+    <!-- Labels -->
+    <string name="label_home">홈</string>
+    <string name="label_calendar">월별 기록</string>
+    <string name="label_add">영양제 추가</string>
+    <string name="label_community">커뮤니티</string>
+    <string name="label_preference">설정</string>
 </resources>

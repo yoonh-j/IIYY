@@ -3,10 +3,8 @@ package com.yoond.iiyy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yoond.iiyy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,18 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
-//        setToolbarTitle(resources.getString(R.string.title_home))
         initBottomNavBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.toolbar.title = resources.getString(R.string.label_home)
     }
 
     private fun initBottomNavBar() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            binding.toolbar.title = navController.currentDestination?.label
+        }
         binding.bottomNav.setupWithNavController(navController)
-    }
-
-    fun setToolbarTitle(title: String) {
-        binding.toolbar.title = title
     }
 }

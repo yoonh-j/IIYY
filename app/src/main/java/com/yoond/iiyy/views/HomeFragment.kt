@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yoond.iiyy.MainActivity
-import com.yoond.iiyy.R
 import com.yoond.iiyy.databinding.FragmentHomeBinding
 
 /**
@@ -28,11 +26,6 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_home))
     }
 
     companion object {

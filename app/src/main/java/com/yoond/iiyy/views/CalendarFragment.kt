@@ -39,11 +39,6 @@ class CalendarFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_calendar))
-    }
-
     companion object {
         /**
          * Use this factory method to create a new instance of

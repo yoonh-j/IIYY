@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.yoond.iiyy.views.HomeFragment"
+        android:label="@string/label_home"
         tools:layout="@layout/fragment_home">
 
     </fragment>
@@ -15,16 +16,19 @@
     <fragment
         android:id="@+id/nav_calendar"
         android:name="com.yoond.iiyy.views.CalendarFragment"
+        android:label="@string/label_calendar"
         tools:layout="@layout/fragment_calendar"/>
 
     <fragment
         android:id="@+id/nav_add"
         android:name="com.yoond.iiyy.views.AddFragment"
+        android:label="@string/label_add"
         tools:layout="@layout/fragment_add"/>
 
     <fragment
         android:id="@+id/nav_community"
         android:name="com.yoond.iiyy.views.CommunityFragment"
+        android:label="@string/label_community"
         tools:layout="@layout/fragment_community">
 
         <action
@@ -43,6 +47,7 @@
     <fragment
         android:id="@+id/nav_community_detail"
         android:name="com.yoond.iiyy.views.CommunityDetailFragment"
+        android:label=""
         tools:layout="@layout/fragment_community_detail">
         <argument
             android:name="articleKey"
@@ -52,6 +57,7 @@
     <fragment
         android:id="@+id/nav_community_write"
         android:name="com.yoond.iiyy.views.CommunityWriteFragment"
+        android:label=""
         tools:layout="@layout/fragment_community_write">
         <argument
             android:name="articleKey"
@@ -61,5 +67,6 @@
     <fragment
         android:id="@+id/nav_preference"
         android:name="com.yoond.iiyy.views.PreferenceFragment"
+        android:label="@string/label_preference"
         tools:layout="@layout/fragment_preference"/>
 </navigation>
