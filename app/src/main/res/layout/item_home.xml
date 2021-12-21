@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="supplement"
+            type="com.yoond.iiyy.data.Supplement" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ToggleButton
+            android:id="@+id/item_home_check"
+            android:layout_width="@dimen/item_home_check_size"
+            android:layout_height="@dimen/item_home_check_size"
+            android:textOn=""
+            android:textOff=""
+            android:background="@drawable/ic_baseline_check_circle_24"
+            android:onClick="@{clickListener}"
+            android:checked="@{supplement.state}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_home_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base_layout_margin"
+            android:text="11:00 AM"
+            app:layout_constraintTop_toTopOf="@id/item_home_check"
+            app:layout_constraintStart_toEndOf="@id/item_home_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/item_home_name"/>
+
+        <TextView
+            android:id="@+id/item_home_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_home_detail_margin"
+            android:text="@{supplement.name}"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/item_home_time"
+            app:layout_constraintStart_toStartOf="@id/item_home_time"
+            app:layout_constraintEnd_toEndOf="@id/item_home_time"
+            app:layout_constraintBottom_toBottomOf="@id/item_home_check"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

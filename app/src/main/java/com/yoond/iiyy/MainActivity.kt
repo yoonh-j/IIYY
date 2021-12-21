@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.toolbar.title = resources.getString(R.string.label_home)
+        binding.toolbar.title = resources.getString(R.string.title_home)
     }
 
     private fun initBottomNavBar() {

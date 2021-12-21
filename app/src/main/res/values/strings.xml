@@ -17,10 +17,14 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <!-- Labels -->
-    <string name="label_home">홈</string>
-    <string name="label_calendar">월별 기록</string>
-    <string name="label_add">영양제 추가</string>
-    <string name="label_community">커뮤니티</string>
-    <string name="label_preference">설정</string>
+    <!-- Fragment Titles(Labels) -->
+    <string name="title_home">홈</string>
+    <string name="title_calendar">월별 기록</string>
+    <string name="title_add">영양제 추가</string>
+    <string name="title_community">커뮤니티</string>
+    <string name="title_preference">설정</string>
+
+    <!-- Home -->
+    <string name="home_label">오늘의 영양제</string>
+    <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>
 </resources>

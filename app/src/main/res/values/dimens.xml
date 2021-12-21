@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_layout_margin">20dp</dimen>
+
+    <!-- Home -->
+    <dimen name="home_label_margin_top">30dp</dimen>
+    <dimen name="home_label_no_item_height">200dp</dimen>
+
+    <dimen name="item_home_check_size">24dp</dimen>
+    <dimen name="item_home_detail_margin">5dp</dimen>
+</resources>
