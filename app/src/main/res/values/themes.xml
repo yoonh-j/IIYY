@@ -14,8 +14,9 @@
 
         <item name="android:textColor">@color/black</item>
 
-        <!-- 상태바 회색 반투명으로 설정 -->
-        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 상태바를 toolbar 색상, 글자를 어두운 색으로 설정 -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <!-- api 27 이상이면 네비게이션 바 색을 bottomNav와 같게 함 -->
         <item name="android:navigationBarColor" tools:targetApi="27">?attr/colorSurface</item>

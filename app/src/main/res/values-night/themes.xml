@@ -13,8 +13,10 @@
 
         <item name="android:textColor">@color/white</item>
 
-        <!-- 상태바 회색 반투명으로 설정 -->
-        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 상태바를 toolbar 색상, 글자를 밝은 색으로 설정 -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">false</item>
+
         <!-- 네비게이션 바 투명으로 설정해서 흰색이 아닌 bottomNav 색으로 표시 -->
         <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>
