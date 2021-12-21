@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="base_layout_margin">20dp</dimen>
+    <dimen name="base_layout_margin">10dp</dimen>
+
+    <dimen name="list_item_radius">20dp</dimen>
+    <dimen name="list_item_margin">10dp</dimen>
 
     <!-- Home -->
-    <dimen name="home_label_margin_top">30dp</dimen>
+    <dimen name="home_label_margin">20dp</dimen>
     <dimen name="home_label_no_item_height">200dp</dimen>
 
     <dimen name="item_home_check_size">24dp</dimen>
-    <dimen name="item_home_detail_margin">5dp</dimen>
+    <dimen name="item_home_margin_detail">5dp</dimen>
+    <dimen name="item_home_padding">15dp</dimen>
 </resources>

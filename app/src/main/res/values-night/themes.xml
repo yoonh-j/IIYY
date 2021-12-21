@@ -31,4 +31,10 @@
     <style name="Theme.IIYY.BaseLayoutMargin">
         <item name="android:layout_margin">@dimen/base_layout_margin</item>
     </style>
+
+    <style name="Theme.IIYY.ListItemMargin">
+        <item name="android:layout_marginStart">@dimen/list_item_margin</item>
+        <item name="android:layout_marginEnd">@dimen/list_item_margin</item>
+        <item name="android:layout_marginBottom">@dimen/list_item_margin</item>
+    </style>
 </resources>

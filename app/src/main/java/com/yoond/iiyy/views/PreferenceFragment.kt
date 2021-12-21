@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceFragmentCompat
 import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PreferenceFragment : Fragment() {
 
     override fun onCreateView(

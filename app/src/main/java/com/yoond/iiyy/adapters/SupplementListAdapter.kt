@@ -1,5 +1,6 @@
 package com.yoond.iiyy.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -27,15 +28,12 @@ class SupplementAdapter : ListAdapter<Supplement, RecyclerView.ViewHolder>(Suppl
         (holder as SupplementViewHolder).bind(sup)
     }
 
-    override fun getItemCount(): Int {
-        return 10
-    }
-
     class SupplementViewHolder(
         private val binding: ItemHomeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
+                Log.d("HOME_FRAGMENT", binding.itemHomeName.text.toString())
                 binding.itemHomeCheck.let { button ->
                     button.isChecked = !button.isChecked
                 }
