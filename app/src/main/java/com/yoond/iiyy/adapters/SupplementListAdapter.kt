@@ -1,6 +1,5 @@
 package com.yoond.iiyy.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -12,7 +11,10 @@ import com.yoond.iiyy.databinding.ItemHomeBinding
 /**
  * Adapter for the [RecyclerView] in [HomeFragment]
  */
-class SupplementAdapter : ListAdapter<Supplement, RecyclerView.ViewHolder>(SupplementDiffCallback()) {
+class SupplementAdapter(
+    val deleteClickListener: OnDeleteClickListener
+) : ListAdapter<Supplement, RecyclerView.ViewHolder>(SupplementDiffCallback()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return SupplementViewHolder(
             ItemHomeBinding.inflate(
@@ -28,14 +30,20 @@ class SupplementAdapter : ListAdapter<Supplement, RecyclerView.ViewHolder>(Suppl
         (holder as SupplementViewHolder).bind(sup)
     }
 
-    class SupplementViewHolder(
+    inner class SupplementViewHolder(
         private val binding: ItemHomeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.setClickListener {
-                Log.d("HOME_FRAGMENT", binding.itemHomeName.text.toString())
+            binding.setCheckClickListener {
                 binding.itemHomeCheck.let { button ->
                     button.isChecked = !button.isChecked
+                }
+            }
+            binding.setDeleteClickListener {
+                //TODO: confirming dialog
+                val item = binding.supplement
+                if (item != null) {
+                    deleteClickListener.onDeleteClick(item)
                 }
             }
         }
@@ -46,6 +54,10 @@ class SupplementAdapter : ListAdapter<Supplement, RecyclerView.ViewHolder>(Suppl
                 executePendingBindings()
             }
         }
+    }
+
+    interface OnDeleteClickListener {
+        fun onDeleteClick(supplement: Supplement)
     }
 }
 

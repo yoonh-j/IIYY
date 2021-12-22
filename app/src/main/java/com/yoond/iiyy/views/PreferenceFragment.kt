@@ -23,6 +23,7 @@ class PreferenceFragment : Fragment() {
             ?.beginTransaction()
             ?.replace(R.id.layout_pref, Preference())
             ?.commit()
+        (activity as MainActivity).setBackButtonVisible(false)
         return root
     }
     // TODO: fragment transaction 시 fade-in이 없어짐

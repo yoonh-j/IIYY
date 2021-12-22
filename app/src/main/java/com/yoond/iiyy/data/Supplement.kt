@@ -13,4 +13,6 @@ data class Supplement(
     val timeInMillis: Long,
     val intakeInterval: Int,
     val state: Boolean
-)
+) {
+    override fun toString() = "$id $name"
+}

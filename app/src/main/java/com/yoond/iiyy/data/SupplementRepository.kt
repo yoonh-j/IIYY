@@ -11,4 +11,5 @@ class SupplementRepository @Inject constructor(
 
     fun getSupplement(id: String) = supplementDao.getSupplement(id)
 
+    fun deleteSupplement(supplement: Supplement) = supplementDao.deleteSupplement(supplement)
 }

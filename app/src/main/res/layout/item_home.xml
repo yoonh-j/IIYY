@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="clickListener"
+            name="checkClickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="deleteClickListener"
             type="android.view.View.OnClickListener" />
         <variable
             name="supplement"
@@ -15,12 +18,12 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/item_home_padding"
         android:background="@drawable/bg_list_item"
-        android:onClick="@{clickListener}">
+        android:onClick="@{checkClickListener}">
 
         <ToggleButton
             android:id="@+id/item_home_check"
-            android:layout_width="@dimen/item_home_check_size"
-            android:layout_height="@dimen/item_home_check_size"
+            android:layout_width="@dimen/item_home_icon_size"
+            android:layout_height="@dimen/item_home_icon_size"
             android:textOn=""
             android:textOff=""
             android:background="@drawable/ic_baseline_check_circle_24"
@@ -34,10 +37,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/base_layout_margin"
+            android:layout_marginEnd="@dimen/base_layout_margin"
             android:text="@{@string/timeInMillisToDateFormat(supplement.timeInMillis)}"
             app:layout_constraintTop_toTopOf="@id/item_home_check"
             app:layout_constraintStart_toEndOf="@id/item_home_check"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_home_delete"
             app:layout_constraintBottom_toTopOf="@id/item_home_name"/>
 
         <TextView
@@ -51,5 +55,16 @@
             app:layout_constraintStart_toStartOf="@id/item_home_time"
             app:layout_constraintEnd_toEndOf="@id/item_home_time"
             app:layout_constraintBottom_toBottomOf="@id/item_home_check"/>
+
+        <ImageView
+            android:id="@+id/item_home_delete"
+            android:layout_width="@dimen/item_home_icon_size"
+            android:layout_height="@dimen/item_home_icon_size"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:onClick="@{deleteClickListener}"
+            app:layout_constraintTop_toTopOf="@id/item_home_check"
+            app:layout_constraintBottom_toBottomOf="@id/item_home_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/gray_500" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

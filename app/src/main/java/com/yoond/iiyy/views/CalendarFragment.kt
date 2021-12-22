@@ -38,6 +38,7 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        (activity as MainActivity).setBackButtonVisible(false)
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
