@@ -12,7 +12,7 @@ data class Supplement(
     val name: String,
     val timeInMillis: Long,
     val intakeInterval: Int,
-    val state: Boolean
+    var state: Boolean  // 값이 변경되기 때문에 var로 선언
 ) {
-    override fun toString() = "$id $name"
+    override fun toString() = "id:$id name:$name timeInMillis:$timeInMillis intakeInterval:$intakeInterval state:$state"
 }

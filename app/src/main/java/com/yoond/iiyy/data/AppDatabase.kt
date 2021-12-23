@@ -37,7 +37,10 @@ abstract class AppDatabase : RoomDatabase() {
                                             Supplement("2", "오메가3", 1639537800000, 3, true),
                                             Supplement("3", "비타민B", 1636956600000, 1, false),
                                             Supplement("4", "Alpha GPC", 1605412080000, 1, true),
-                                            Supplement("5", "비타민C", 1640081700000, 4, false)
+                                            Supplement("5", "비타민C", 1640081700000, 4, false),
+                                            Supplement("6", "종합비타민", 1640185200000, 4, true),
+                                            Supplement("7", "프로틴", 1640271599000, 1, true),
+                                            Supplement("8", "루테인", 1640271600000, 1, false)
                                         )
                                     )
                                 }

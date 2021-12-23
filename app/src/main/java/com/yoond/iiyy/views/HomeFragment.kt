@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  */
 @AndroidEntryPoint
-class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener {
+class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, SupplementAdapter.OnCheckClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: SupplementListViewModel by viewModels()
@@ -28,12 +28,19 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val adapter = SupplementAdapter(this)
+        val adapter = SupplementAdapter(
+            deleteClickListener = this,
+            checkClickListener = this
+        )
         binding.homeRecycler.adapter = adapter
         subscribeUi(adapter)
 
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
+    }
+
+    override fun onCheckClick(supplement: Supplement) {
+        viewModel.updateSupplement(supplement)
     }
 
     override fun onDeleteClick(supplement: Supplement) {

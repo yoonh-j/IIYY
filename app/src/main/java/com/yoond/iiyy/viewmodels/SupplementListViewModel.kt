@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yoond.iiyy.data.Supplement
 import com.yoond.iiyy.data.SupplementRepository
+import com.yoond.iiyy.utils.DateInMillisUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,14 +18,23 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SupplementListViewModel @Inject constructor(
-    private val repository: SupplementRepository,
-    private val savedStateHandle: SavedStateHandle
+    private val repository: SupplementRepository
 ) : ViewModel() {
-    val supplements: LiveData<List<Supplement>> = repository.getAllSupplements()
+    val supplements: LiveData<List<Supplement>> =
+        repository.getTodaySupplements(
+            DateInMillisUtil.getTodayStartInMillis(),
+            DateInMillisUtil.getTomorrowStartInMillis()
+        )
 
     fun deleteSupplement(supplement: Supplement) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.deleteSupplement(supplement)
+        }
+    }
+
+    fun updateSupplement(supplement: Supplement) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.updateSupplement(supplement)
         }
     }
 }

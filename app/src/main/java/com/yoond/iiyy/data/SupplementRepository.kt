@@ -9,7 +9,12 @@ class SupplementRepository @Inject constructor(
 ) {
     fun getAllSupplements() = supplementDao.getAllSupplements()
 
+    fun getTodaySupplements(startTimeInMillis: Long, endTimeInMillis: Long) =
+        supplementDao.getTodaySupplements(startTimeInMillis, endTimeInMillis)
+
     fun getSupplement(id: String) = supplementDao.getSupplement(id)
 
     fun deleteSupplement(supplement: Supplement) = supplementDao.deleteSupplement(supplement)
+
+    fun updateSupplement(supplement: Supplement) = supplementDao.updateSupplement(supplement)
 }
