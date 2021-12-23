@@ -12,4 +12,10 @@
     <dimen name="item_home_icon_size">24dp</dimen>
     <dimen name="item_home_margin_detail">5dp</dimen>
     <dimen name="item_home_padding">15dp</dimen>
+
+    <!-- Calendar -->
+    <dimen name="item_cal_border">2dp</dimen>
+    <dimen name="item_cal_corner_radius">5dp</dimen>
+    <item name="item_cal_dot_radius" format="float" type="dimen">7.0</item>
+    <item name="item_cal_today_size" format="float" type="dimen">1.2</item>
 </resources>

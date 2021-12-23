@@ -19,12 +19,13 @@ import javax.inject.Inject
 class SupplementListViewModel @Inject constructor(
     private val repository: SupplementRepository
 ) : ViewModel() {
+    val supplements: LiveData<List<Supplement>> = repository.getAllSupplements()
+
     val dailySupplements: LiveData<List<Supplement>> =
         repository.getDailySupplements(
             getTodayStartInMillis(),
             getTomorrowStartInMillis()
         )
-    val supplements: LiveData<List<Supplement>> = repository.getAllSupplements()
 
     fun deleteSupplement(supplement: Supplement) {
         CoroutineScope(Dispatchers.IO).launch {

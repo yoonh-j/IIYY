@@ -11,7 +11,7 @@ data class Supplement(
     val id: String,
     val name: String,
     val timeInMillis: Long,
-    var state: Boolean
+    var status: Boolean
 ) {
-    override fun toString() = "id:$id name:$name timeInMillis:$timeInMillis state:$state"
+    override fun toString() = "id:$id name:$name timeInMillis:$timeInMillis status:$status"
 }

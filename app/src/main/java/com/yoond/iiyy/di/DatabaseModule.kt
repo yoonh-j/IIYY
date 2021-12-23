@@ -2,6 +2,7 @@ package com.yoond.iiyy.di
 
 import android.content.Context
 import com.yoond.iiyy.data.AppDatabase
+import com.yoond.iiyy.data.StateDao
 import com.yoond.iiyy.data.SupplementDao
 import com.yoond.iiyy.data.SupplementRepository
 import com.yoond.iiyy.viewmodels.SupplementListViewModel
@@ -25,5 +26,10 @@ class DatabaseModule {
     @Provides
     fun provideSupplementDao(appDatabase: AppDatabase): SupplementDao {
         return appDatabase.supplementDao()
+    }
+
+    @Provides
+    fun provideStateDao(appDatabase: AppDatabase): StateDao {
+        return appDatabase.stateDao()
     }
 }

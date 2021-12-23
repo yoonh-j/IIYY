@@ -9,10 +9,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.yoond.iiyy.utils.DATABASE_NAME
 import java.util.concurrent.Executors
 
-@Database(entities = [Supplement::class], version = 1)
+@Database(entities = [Supplement::class, State::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun supplementDao(): SupplementDao
+    abstract fun stateDao(): StateDao
 
     companion object {
         @Volatile private var instance: AppDatabase? = null
@@ -41,6 +42,20 @@ abstract class AppDatabase : RoomDatabase() {
                                             Supplement("6", "종합비타민", 1640185200000, true),
                                             Supplement("7", "프로틴", 1640271599000, true),
                                             Supplement("8", "루테인", 1640271600000, false)
+                                        )
+                                    )
+                                    instance?.stateDao()?.insertStateList(
+                                        listOf(
+                                            State(1635692400000, 1),
+                                            State(1636902000000, 0),
+                                            State(1636988400000, 2),
+                                            State(1638284400000, 0),
+                                            State(1638370800000, 1),
+                                            State(1639494000000, 2),
+                                            State(1639580400000, 1),
+                                            State(1639666800000, 1),
+                                            State(1639926000000, 0),
+                                            State(1640185200000, 1)
                                         )
                                     )
                                 }

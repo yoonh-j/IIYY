@@ -25,4 +25,7 @@ interface SupplementDao {
 
     @Query("select * from supplements where id = :id")
     fun getSupplement(id: String): LiveData<Supplement>
+
+    @Query("select status from supplements where timeInMillis >= :startTimeInMillis and timeInMillis < :endTimeInMillis")
+    fun getTotalState(startTimeInMillis: Long, endTimeInMillis: Long): LiveData<Boolean>
 }

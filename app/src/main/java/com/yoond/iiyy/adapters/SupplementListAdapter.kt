@@ -39,7 +39,7 @@ class SupplementAdapter(
             binding.setCheckClickListener {
                 val item = binding.supplement
                 if (item != null) {
-                    item.state = !item.state
+                    item.status = !item.status
                     Log.d("SUPPLEMENT_LIST_ADAPTER", item.toString())
                     checkClickListener.onCheckClick(item)
                 }
