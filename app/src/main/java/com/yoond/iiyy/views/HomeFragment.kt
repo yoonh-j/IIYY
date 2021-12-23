@@ -35,9 +35,23 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
         binding.homeRecycler.adapter = adapter
         subscribeUi(adapter)
 
+//        setHasOptionsMenu(true)
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.menu_toolbar_home, menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.menu_all_supplements -> {
+//                navigateToHomeAll()
+//                true
+//            } else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 
     override fun onCheckClick(supplement: Supplement) {
         viewModel.updateSupplement(supplement)
@@ -53,4 +67,8 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
             adapter.submitList(supplements)
         }
     }
+//
+//    private fun navigateToHomeAll() {
+//        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeAllFragment())
+//    }
 }

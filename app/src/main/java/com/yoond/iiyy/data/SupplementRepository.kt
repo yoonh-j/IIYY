@@ -9,8 +9,8 @@ class SupplementRepository @Inject constructor(
 ) {
     fun getAllSupplements() = supplementDao.getAllSupplements()
 
-    fun getTodaySupplements(startTimeInMillis: Long, endTimeInMillis: Long) =
-        supplementDao.getTodaySupplements(startTimeInMillis, endTimeInMillis)
+    fun getDailySupplements(startTimeInMillis: Long, endTimeInMillis: Long) =
+        supplementDao.getDailySupplements(startTimeInMillis, endTimeInMillis)
 
     fun getSupplement(id: String) = supplementDao.getSupplement(id)
 
