@@ -1,5 +1,6 @@
 package com.yoond.iiyy.data
 
+import com.yoond.iiyy.utils.DAY_IN_MILLIS
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -9,10 +10,8 @@ class SupplementRepository @Inject constructor(
 ) {
     fun getAllSupplements() = supplementDao.getAllSupplements()
 
-    fun getDailySupplements(startTimeInMillis: Long, endTimeInMillis: Long) =
-        supplementDao.getDailySupplements(startTimeInMillis, endTimeInMillis)
-
-    fun getSupplement(id: String) = supplementDao.getSupplement(id)
+    fun getSupplementsByTimeInMillis(startTimeInMillis: Long) =
+        supplementDao.getSupplementsByTimeInMillis(startTimeInMillis, startTimeInMillis + DAY_IN_MILLIS)
 
     fun deleteSupplement(supplement: Supplement) = supplementDao.deleteSupplement(supplement)
 

@@ -16,6 +16,12 @@
     <!-- Calendar -->
     <dimen name="item_cal_border">2dp</dimen>
     <dimen name="item_cal_corner_radius">5dp</dimen>
+    <dimen name="item_cal_padding">20dp</dimen>
     <item name="item_cal_dot_radius" format="float" type="dimen">7.0</item>
     <item name="item_cal_today_size" format="float" type="dimen">1.2</item>
+
+    <dimen name="dialog_cal_padding">20dp</dimen>
+    <dimen name="dialog_border">0.5dp</dimen>
+    <dimen name="dialog_corner_radius">16dp</dimen>
+    <item name="dialog_height_ratio" format="float" type="dimen">0.6</item>
 </resources>

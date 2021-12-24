@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="supplement"
+            type="com.yoond.iiyy.data.Supplement" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_cal_padding">
+
+        <ToggleButton
+            android:id="@+id/item_cal_status"
+            android:layout_width="@dimen/item_home_icon_size"
+            android:layout_height="@dimen/item_home_icon_size"
+            android:textOn=""
+            android:textOff=""
+            android:clickable="false"
+            android:background="@drawable/selector_ic_baseline_check_cal"
+            android:checked="@{supplement.status}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_cal_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base_layout_margin"
+            android:layout_marginEnd="@dimen/base_layout_margin"
+            android:text="@{@string/timeInMillisToTimeFormat(supplement.timeInMillis)}"
+            app:layout_constraintTop_toTopOf="@id/item_cal_status"
+            app:layout_constraintStart_toEndOf="@id/item_cal_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/item_cal_name"/>
+
+        <TextView
+            android:id="@+id/item_cal_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_home_margin_detail"
+            android:text="@{supplement.name}"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/item_cal_time"
+            app:layout_constraintStart_toStartOf="@id/item_cal_time"
+            app:layout_constraintEnd_toEndOf="@id/item_cal_time"
+            app:layout_constraintBottom_toBottomOf="@id/item_cal_status"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

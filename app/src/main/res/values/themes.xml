@@ -41,4 +41,16 @@
         <item name="android:layout_marginEnd">@dimen/list_item_margin</item>
         <item name="android:layout_marginBottom">@dimen/list_item_margin</item>
     </style>
+
+    <style name="Theme.IIYY.CalendarHeaderText" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.IIYY.Dialog" parent="Theme.AppCompat.Dialog">
+        <!-- dialog 크기 -->
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="windowFixedHeightMajor">100%</item>
+        <item name="windowFixedHeightMinor">100%</item>
+    </style>
 </resources>

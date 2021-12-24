@@ -30,7 +30,7 @@
     <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>
 
     <!-- Home RecyclerView items의 시간을 표시하기 위한 format -->
-    <string name="timeInMillisToDateFormat">%1$Tp %1$tI:%1$tM</string>
+    <string name="timeInMillisToTimeFormat">%1$Tp %1$tI:%1$tM</string>
 
     <!-- Menus -->
     <string name="menu_all_supplements">모든 영양제 목록</string>
