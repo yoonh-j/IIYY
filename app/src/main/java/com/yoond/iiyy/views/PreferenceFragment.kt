@@ -26,5 +26,10 @@ class PreferenceFragment : Fragment() {
         (activity as MainActivity).setBackButtonVisible(false)
         return root
     }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_preference))
+    }
     // TODO: fragment transaction 시 fade-in이 없어짐
 }

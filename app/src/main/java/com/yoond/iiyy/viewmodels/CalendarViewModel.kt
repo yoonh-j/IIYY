@@ -23,7 +23,7 @@ class CalendarViewModel @Inject constructor(
     val partiallyTakenList = mutableListOf<CalendarDay>()
     val notTakenList = mutableListOf<CalendarDay>()
 
-    fun initTakenLists(stateList: List<State>) {
+    fun getStateLists(stateList: List<State>) {
         CoroutineScope(Dispatchers.IO).launch {
             for (state in stateList) {
                 val cal = Calendar.getInstance()

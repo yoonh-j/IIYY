@@ -42,6 +42,11 @@ class CommunityFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_community, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_community))
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

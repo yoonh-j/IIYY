@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Theme.IIYY.BaseLayoutMargin"
@@ -12,6 +12,10 @@
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendar_cal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:mcv_selectionMode="single"
+            app:mcv_leftArrow="@drawable/ic_baseline_arrow_left_24"
+            app:mcv_rightArrow="@drawable/ic_baseline_arrow_right_24"
+            app:mcv_headerTextAppearance="@style/TextAppearance.AppCompat.Subhead" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

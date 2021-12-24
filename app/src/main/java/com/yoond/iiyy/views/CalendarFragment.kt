@@ -10,8 +10,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.color.MaterialColors
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
 import com.yoond.iiyy.databinding.FragmentCalendarBinding
@@ -26,7 +24,7 @@ import java.util.*
  *
  */
 @AndroidEntryPoint
-class CalendarFragment : Fragment(), OnDateSelectedListener {
+class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private val viewModel: CalendarViewModel by viewModels()
 
@@ -36,30 +34,37 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
     ): View {
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
 
+        initCalendar()
         subscribeUi()
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
     }
 
-    override fun onDateSelected(
-        widget: MaterialCalendarView,
-        date: CalendarDay,
-        selected: Boolean
-    ) {
-        val timeInMillis = getSelectedTimeInMillis(date)
-        Toast.makeText(context, "onDateSelected:$timeInMillis", Toast.LENGTH_SHORT).show()
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_calendar))
     }
 
     private fun subscribeUi() {
         viewModel.states.observe(viewLifecycleOwner) { states ->
             if (!states.isNullOrEmpty()) {
-                viewModel.initTakenLists(states)
-                initCalendar()
+                viewModel.getStateLists(states)
+                setCalendarStates()
             }
         }
     }
 
     private fun initCalendar() {
+        binding.calendarCal.setOnDateChangedListener { _, date, _ ->
+            val timeInMillis = getSelectedTimeInMillis(date)
+            Toast.makeText(context, "onDateSelected:$timeInMillis", Toast.LENGTH_SHORT).show()
+        }
+        binding.calendarCal.setTitleFormatter {
+            "${it.year}년 ${it.month}월"
+        }
+    }
+
+    private fun setCalendarStates() {
         val selectDrawable = ResourcesCompat.getDrawable(resources, R.drawable.bg_cal_select, null)
         val dotRadius = ResourcesCompat.getFloat(resources, R.dimen.item_cal_dot_radius)
         val todaySize = ResourcesCompat.getFloat(resources, R.dimen.item_cal_today_size)
@@ -71,7 +76,6 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
         val partiallyTakenColor = resources.getColor(R.color.yellow_600, null)
         val notTakenColor = resources.getColor(R.color.red_500, null)
 
-        binding.calendarCal.setOnDateChangedListener(this)
         binding.calendarCal.addDecorators(
             selectDrawable?.let { CalendarSelectDecorator(it, textColor) },
             CalendarStateDecorator(viewModel.allTakenList, dotRadius, allTakenColor),

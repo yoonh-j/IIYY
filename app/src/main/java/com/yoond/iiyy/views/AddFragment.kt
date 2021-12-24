@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yoond.iiyy.MainActivity
+import com.yoond.iiyy.R
 import com.yoond.iiyy.databinding.FragmentAddBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,11 @@ class AddFragment : Fragment() {
         val binding = FragmentAddBinding.inflate(inflater, container, false)
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_add))
     }
 
     companion object {

@@ -22,11 +22,6 @@ class MainActivity : AppCompatActivity() {
         initBottomNavBar()
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.toolbar.title = resources.getString(R.string.title_home)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
@@ -34,11 +29,11 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavBar() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            binding.toolbar.title = navController.currentDestination?.label
-        }
         binding.bottomNav.setupWithNavController(navController)
+    }
+
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
     }
 
     fun setBackButtonVisible(visible: Boolean) {
