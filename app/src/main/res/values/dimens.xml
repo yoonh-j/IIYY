@@ -3,15 +3,16 @@
     <dimen name="base_layout_margin">10dp</dimen>
 
     <dimen name="divier_height">0.1dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="label_no_item_height">200dp</dimen>
 
     <dimen name="list_item_radius">20dp</dimen>
     <dimen name="list_item_margin">10dp</dimen>
-    <!-- fab(56dp) + 2 * bottom margin(16dp) -->
-    <dimen name="list_item_last_margin">88dp</dimen>
+    <dimen name="list_item_last_margin">100dp</dimen>
 
     <!-- Home -->
     <dimen name="home_label_margin">20dp</dimen>
-    <dimen name="home_label_no_item_height">200dp</dimen>
 
     <dimen name="item_home_icon_size">24dp</dimen>
     <dimen name="item_home_margin_detail">5dp</dimen>
@@ -31,4 +32,8 @@
     <dimen name="dialog_border">0.5dp</dimen>
     <dimen name="dialog_corner_radius">16dp</dimen>
     <item name="dialog_height_ratio" format="float" type="dimen">0.6</item>
+
+    <!-- Community -->
+    <dimen name="item_com_pading">20dp</dimen>
+    <dimen name="item_com_margin_detail">10dp</dimen>
 </resources>

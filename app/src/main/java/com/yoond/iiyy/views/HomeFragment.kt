@@ -11,7 +11,7 @@ import com.yoond.iiyy.R
 import com.yoond.iiyy.adapters.SupplementAdapter
 import com.yoond.iiyy.data.Supplement
 import com.yoond.iiyy.databinding.FragmentHomeBinding
-import com.yoond.iiyy.decorators.SupplementListDecoration
+import com.yoond.iiyy.decorators.ListDecoration
 import com.yoond.iiyy.viewmodels.SupplementListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,7 +60,7 @@ class HomeFragment :
 
         val default = resources.getDimension(R.dimen.list_item_margin).toInt()
         val last = resources.getDimension(R.dimen.list_item_last_margin).toInt()
-        binding.homeRecycler.addItemDecoration(SupplementListDecoration(default, last))
+        binding.homeRecycler.addItemDecoration(ListDecoration(default, last))
         binding.homeFab.setOnClickListener {
             navigateToHomeAdd()
         }
@@ -70,7 +70,11 @@ class HomeFragment :
     private fun subscribeUi(adapter: SupplementAdapter) {
         viewModel.supplements.observe(viewLifecycleOwner) { supplements ->
             binding.hasItems = !supplements.isNullOrEmpty()
-            adapter.submitList(supplements)
+            adapter.submitList(supplements) {
+                // 새 목록이 적용되었을 때 마지막 아이템의 바닥 공간을 새로 설정하기 위해
+                // item decoration invalidate 시키는 Runnable
+                binding.homeRecycler.invalidateItemDecorations()
+            }
         }
     }
 

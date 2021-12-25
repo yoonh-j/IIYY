@@ -12,41 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_home"
+            isGone="@{!hasItems}"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                isGone="@{!hasItems}"
-                tools:listitem="@layout/item_home"/>
-
-            <TextView
-                android:id="@+id/home_no_item"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/home_label_no_item_height"
-                android:gravity="center"
-                android:text="@string/home_no_item"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/gray_500"
-                app:isGone="@{hasItems}"/>
-        </FrameLayout>
+        <TextView
+            style="@style/Theme.IIYY.NoItemText"
+            android:id="@+id/home_no_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/label_no_item_height"
+            android:text="@string/home_no_item"
+            isGone="@{hasItems}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_add_24"/>
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_baseline_add_24"
+            android:contentDescription="@string/home_description_fab"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

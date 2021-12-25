@@ -37,7 +37,7 @@ class CalendarDetailDialog(
 
     private fun init() {
         binding = DialogCalendarDetailBinding.inflate(layoutInflater)
-        binding.date =  SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA).format(dateInMillis)
+        binding.dateInMillis = dateInMillis
 
         val adapter = CalendarDetailAdapter()
         subscribeUi(adapter)

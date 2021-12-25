@@ -61,4 +61,10 @@
     <style name="Theme.IIYY.TimePicker">
         <item name="android:colorControlNormal">?attr/colorPrimary</item>
     </style>
+
+    <style name="Theme.IIYY.NoItemText" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:textColor">@color/gray_500</item>
+    </style>
 </resources>

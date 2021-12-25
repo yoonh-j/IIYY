@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="date"
-            type="String" />
+            name="dateInMillis"
+            type="long" />
         <variable
             name="viewModel"
             type="com.yoond.iiyy.viewmodels.SupplementListViewModel" />
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/item_cal_padding"
             android:layout_marginEnd="@dimen/item_cal_padding"
-            android:text="@{date}"
+            android:text="@{@string/timeInMillisToDateFormat(dateInMillis)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

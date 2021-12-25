@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class SupplementListDecoration(
+class ListDecoration(
     private val default: Int,
     private val last: Int
 ): RecyclerView.ItemDecoration() {
@@ -20,6 +20,8 @@ class SupplementListDecoration(
         // FAB이 마지막 아이템을 가리지 않도록 하기 위해 bottom에 공간 설정
         if (pos == state.itemCount - 1) {
             outRect.bottom = last
+        } else {
+            outRect.bottom = 0
         }
         outRect.top = default
         outRect.left = default
