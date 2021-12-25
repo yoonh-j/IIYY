@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_margin="@dimen/home_add_layout_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            style="@style/Theme.IIYY.EditText"
+            android:id="@+id/home_add_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/home_add_layout_margin"
+            android:autofillHints="@string/home_add_hint"
+            android:hint="@string/home_add_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"/>
+
+        <include layout="@layout/divider"
+            app:layout_constraintTop_toBottomOf="@id/home_add_input"/>
+
+        <TextView
+            android:id="@+id/home_add_time_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/home_add_layout_margin"
+            android:text="@string/home_add_time_label"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintTop_toBottomOf="@id/home_add_input"/>
+
+        <TimePicker
+            android:theme="@style/Theme.IIYY.TimePicker"
+            android:id="@+id/home_add_timepicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            app:layout_constraintTop_toBottomOf="@id/home_add_time_label"/>
+    </LinearLayout>
+</layout>

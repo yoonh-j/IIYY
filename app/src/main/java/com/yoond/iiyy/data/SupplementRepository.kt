@@ -13,6 +13,8 @@ class SupplementRepository @Inject constructor(
     fun getSupplementsByTimeInMillis(startTimeInMillis: Long) =
         supplementDao.getSupplementsByTimeInMillis(startTimeInMillis, startTimeInMillis + DAY_IN_MILLIS)
 
+    fun insertSupplement(supplement: Supplement) = supplementDao.insertSupplement(supplement)
+
     fun deleteSupplement(supplement: Supplement) = supplementDao.deleteSupplement(supplement)
 
     fun updateSupplement(supplement: Supplement) = supplementDao.updateSupplement(supplement)

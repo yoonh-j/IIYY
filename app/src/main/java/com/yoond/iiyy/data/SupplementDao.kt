@@ -5,10 +5,10 @@ import androidx.room.*
 
 @Dao
 interface SupplementDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSupplement(supplement: Supplement)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSupplementList(list: List<Supplement>)
 
     @Update

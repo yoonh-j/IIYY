@@ -18,7 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  */
 @AndroidEntryPoint
-class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, SupplementAdapter.OnCheckClickListener {
+class HomeFragment :
+    Fragment(),
+    SupplementAdapter.OnDeleteClickListener,
+    SupplementAdapter.OnCheckClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: SupplementListViewModel by viewModels()
@@ -36,7 +39,9 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
         binding.homeRecycler.adapter = adapter
         subscribeUi(adapter)
 
-//        setHasOptionsMenu(true)
+        binding.homeFab.setOnClickListener {
+            navigateToHomeAdd()
+        }
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
     }
@@ -71,8 +76,7 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
             .show()
     }
 
-//
-//    private fun navigateToHomeAll() {
-//        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeAllFragment())
-//    }
+    private fun navigateToHomeAdd() {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeAddFragment())
+    }
 }

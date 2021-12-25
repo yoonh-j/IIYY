@@ -6,12 +6,14 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "supplements")
 data class Supplement(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: String,
+    var id: Int = 0,
     val name: String,
     val timeInMillis: Long,
     var status: Boolean
 ) {
+    constructor(name: String, timeInMillis: Long, status: Boolean): this(0, name, timeInMillis, status)
+
     override fun toString() = "id:$id name:$name timeInMillis:$timeInMillis status:$status"
 }

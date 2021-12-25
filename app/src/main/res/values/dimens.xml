@@ -2,6 +2,8 @@
 <resources>
     <dimen name="base_layout_margin">10dp</dimen>
 
+    <dimen name="divier_height">0.1dp</dimen>
+
     <dimen name="list_item_radius">20dp</dimen>
     <dimen name="list_item_margin">10dp</dimen>
 
@@ -12,6 +14,9 @@
     <dimen name="item_home_icon_size">24dp</dimen>
     <dimen name="item_home_margin_detail">5dp</dimen>
     <dimen name="item_home_padding">15dp</dimen>
+
+    <!-- Home Add -->
+    <dimen name="home_add_layout_margin">20dp</dimen>
 
     <!-- Calendar -->
     <dimen name="item_cal_border">2dp</dimen>

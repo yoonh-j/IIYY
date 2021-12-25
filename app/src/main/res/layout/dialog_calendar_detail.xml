@@ -9,9 +9,6 @@
         <variable
             name="viewModel"
             type="com.yoond.iiyy.viewmodels.SupplementListViewModel" />
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,22 +21,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/item_cal_padding"
+            android:layout_marginEnd="@dimen/item_cal_padding"
             android:text="@{date}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dialog_cal_detail_close"/>
-
-        <ImageView
-            android:id="@+id/dialog_cal_detail_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_cal_padding"
-            android:paddingEnd="@dimen/item_cal_padding"
-            android:src="@drawable/ic_baseline_close_24"
-            android:onClick="@{clickListener}"
-            app:layout_constraintTop_toTopOf="@id/dialog_cal_detail_date"
-            app:layout_constraintBottom_toBottomOf="@id/dialog_cal_detail_date"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView

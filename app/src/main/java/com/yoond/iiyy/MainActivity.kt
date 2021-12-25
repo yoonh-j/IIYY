@@ -29,6 +29,13 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavBar() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.nav_home_add) {
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
+            } else {
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+            }
+        }
         binding.bottomNav.setupWithNavController(navController)
     }
 

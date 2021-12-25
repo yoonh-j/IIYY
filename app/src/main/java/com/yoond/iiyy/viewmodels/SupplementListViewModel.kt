@@ -22,6 +22,12 @@ class SupplementListViewModel @Inject constructor(
             repository.getSupplementsByTimeInMillis(timeInMillis)
         }
 
+    fun insertSupplement(supplement: Supplement) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.insertSupplement(supplement)
+        }
+    }
+
     fun deleteSupplement(supplement: Supplement) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.deleteSupplement(supplement)

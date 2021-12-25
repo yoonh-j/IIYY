@@ -4,6 +4,6 @@
         android:color="?attr/colorPrimary"
         android:state_checked="true"/>
     <item
-        android:color="?attr/colorSecondary"
+        android:color="@color/gray_500"
         android:state_checked="false"/>
 </selector>

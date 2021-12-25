@@ -3,25 +3,20 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/selector_ic_nav_home"
-        android:title="home" />
+        android:title="@string/title_home" />
 
     <item
         android:id="@+id/nav_calendar"
         android:icon="@drawable/selector_ic_nav_calendar"
-        android:title="month"/>
-
-    <item
-        android:id="@+id/nav_add"
-        android:icon="@drawable/selector_ic_nav_add"
-        android:title="add"/>
+        android:title="@string/title_calendar"/>
 
     <item
         android:id="@+id/nav_community"
         android:icon="@drawable/selector_ic_nav_community"
-        android:title="community" />
+        android:title="@string/title_community" />
 
     <item
         android:id="@+id/nav_preference"
         android:icon="@drawable/selector_ic_nav_preference"
-        android:title="pref" />
+        android:title="@string/title_preference" />
 </menu>

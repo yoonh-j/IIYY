@@ -19,7 +19,7 @@ import java.util.*
 class CalendarDetailDialog(
     private val dateInMillis: Long,
     private val supplements: List<Supplement>
-): DialogFragment(), View.OnClickListener {
+): DialogFragment() {
     private lateinit var binding: DialogCalendarDetailBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -27,7 +27,6 @@ class CalendarDetailDialog(
 
         binding = DialogCalendarDetailBinding.inflate(layoutInflater)
         binding.date =  SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA).format(dateInMillis)
-        binding.clickListener = this
 
         val adapter = CalendarDetailAdapter()
         subscribeUi(adapter)
@@ -40,10 +39,6 @@ class CalendarDetailDialog(
         super.onResume()
         setDialogHeight()
         setDialogBackground()
-    }
-
-    override fun onClick(view: View?) {
-        if (view?.id == R.id.dialog_cal_detail_close) dialog?.dismiss()
     }
 
     private fun subscribeUi(adapter: CalendarDetailAdapter) {

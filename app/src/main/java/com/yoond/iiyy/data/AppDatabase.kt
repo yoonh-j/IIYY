@@ -34,14 +34,14 @@ abstract class AppDatabase : RoomDatabase() {
                                 Runnable {
                                     instance?.supplementDao()?.insertSupplementList(
                                         listOf(
-                                            Supplement("1", "MSM", 1640081700000, false),
-                                            Supplement("2", "오메가3", 1639537800000,  true),
-                                            Supplement("3", "비타민B", 1636956600000,  false),
-                                            Supplement("4", "Alpha GPC", 1605412080000, true),
-                                            Supplement("5", "비타민C", 1640081700000, false),
-                                            Supplement("6", "종합비타민", 1640185200000, true),
-                                            Supplement("7", "프로틴", 1640271599000, true),
-                                            Supplement("8", "루테인", 1640271600000, false)
+                                            Supplement("MSM", 1640081700000, false),
+                                            Supplement("오메가3", 1639537800000,  true),
+                                            Supplement("비타민B", 1636956600000,  false),
+                                            Supplement("Alpha GPC", 1605412080000, true),
+                                            Supplement("비타민C", 1640081700000, false),
+                                            Supplement("종합비타민", 1640185200000, true),
+                                            Supplement("프로틴", 1640271599000, true),
+                                            Supplement("루테인", 1640271600000, false)
                                         )
                                     )
                                     instance?.stateDao()?.insertStateList(
