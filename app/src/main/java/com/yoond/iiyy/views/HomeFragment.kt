@@ -11,6 +11,7 @@ import com.yoond.iiyy.R
 import com.yoond.iiyy.adapters.SupplementAdapter
 import com.yoond.iiyy.data.Supplement
 import com.yoond.iiyy.databinding.FragmentHomeBinding
+import com.yoond.iiyy.decorators.SupplementListDecoration
 import com.yoond.iiyy.viewmodels.SupplementListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,17 +33,7 @@ class HomeFragment :
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val adapter = SupplementAdapter(
-            deleteClickListener = this,
-            checkClickListener = this
-        )
-        binding.homeRecycler.adapter = adapter
-        subscribeUi(adapter)
-
-        binding.homeFab.setOnClickListener {
-            navigateToHomeAdd()
-        }
-        (activity as MainActivity).setBackButtonVisible(false)
+        init()
         return binding.root
     }
 
@@ -57,6 +48,23 @@ class HomeFragment :
 
     override fun onDeleteClick(supplement: Supplement) {
         showConfirmDialog(supplement)
+    }
+
+    private fun init() {
+        val adapter = SupplementAdapter(
+            deleteClickListener = this,
+            checkClickListener = this
+        )
+        binding.homeRecycler.adapter = adapter
+        subscribeUi(adapter)
+
+        val default = resources.getDimension(R.dimen.list_item_margin).toInt()
+        val last = resources.getDimension(R.dimen.list_item_last_margin).toInt()
+        binding.homeRecycler.addItemDecoration(SupplementListDecoration(default, last))
+        binding.homeFab.setOnClickListener {
+            navigateToHomeAdd()
+        }
+        (activity as MainActivity).setBackButtonVisible(false)
     }
 
     private fun subscribeUi(adapter: SupplementAdapter) {

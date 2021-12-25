@@ -25,13 +25,7 @@ class CalendarDetailDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(context, R.style.Theme_IIYY_Dialog)
 
-        binding = DialogCalendarDetailBinding.inflate(layoutInflater)
-        binding.date =  SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA).format(dateInMillis)
-
-        val adapter = CalendarDetailAdapter()
-        subscribeUi(adapter)
-        binding.dialogCalDetailRecycler.adapter = adapter
-
+        init()
         return builder.setView(binding.root).create()
     }
 
@@ -39,6 +33,15 @@ class CalendarDetailDialog(
         super.onResume()
         setDialogHeight()
         setDialogBackground()
+    }
+
+    private fun init() {
+        binding = DialogCalendarDetailBinding.inflate(layoutInflater)
+        binding.date =  SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA).format(dateInMillis)
+
+        val adapter = CalendarDetailAdapter()
+        subscribeUi(adapter)
+        binding.dialogCalDetailRecycler.adapter = adapter
     }
 
     private fun subscribeUi(adapter: CalendarDetailAdapter) {

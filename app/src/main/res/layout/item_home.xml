@@ -13,7 +13,6 @@
             type="com.yoond.iiyy.data.Supplement" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Theme.IIYY.ListItemMargin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/item_home_padding"

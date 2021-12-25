@@ -26,8 +26,7 @@ class HomeAddFragment : Fragment() {
     ): View {
         binding = FragmentHomeAddBinding.inflate(inflater, container, false)
 
-        (activity as MainActivity).setBackButtonVisible(true)
-        setHasOptionsMenu(true)
+        init()
         return binding.root
     }
 
@@ -48,6 +47,11 @@ class HomeAddFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun init() {
+        (activity as MainActivity).setBackButtonVisible(true)
+        setHasOptionsMenu(true)
     }
 
     private fun addSupplement() {
