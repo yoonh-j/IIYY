@@ -2,6 +2,7 @@ package com.yoond.iiyy.views
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -50,7 +51,7 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
     }
 
     override fun onDeleteClick(supplement: Supplement) {
-        viewModel.deleteSupplement(supplement)
+        showConfirmDialog(supplement)
     }
 
     private fun subscribeUi(adapter: SupplementAdapter) {
@@ -60,6 +61,15 @@ class HomeFragment : Fragment(), SupplementAdapter.OnDeleteClickListener, Supple
         }
     }
 
+    private fun showConfirmDialog(supplement: Supplement) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(R.string.home_delete_confirm)
+            .setPositiveButton(R.string.dialog_positive) { _, _ ->
+                viewModel.deleteSupplement(supplement)
+            }
+            .setNegativeButton(R.string.dialog_neutral, null)
+            .show()
+    }
 
 //
 //    private fun navigateToHomeAll() {

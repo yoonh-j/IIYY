@@ -28,10 +28,15 @@
     <!-- Home -->
     <string name="home_label">오늘의 영양제</string>
     <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>
+    <string name="home_delete_confirm">삭제하시겠습니까?</string>
 
     <!-- Home RecyclerView items의 시간을 표시하기 위한 format -->
     <string name="timeInMillisToTimeFormat">%1$Tp %1$tI:%1$tM</string>
 
     <!-- Menus -->
     <string name="menu_all_supplements">모든 영양제 목록</string>
+
+    <!-- AlertDialog button -->
+    <string name="dialog_positive">확인</string>
+    <string name="dialog_neutral">취소</string>
 </resources>
