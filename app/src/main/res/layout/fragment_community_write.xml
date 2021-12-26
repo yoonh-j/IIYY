@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.CommunityWriteFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="com_write" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/com_write_layout_margin"
+            android:orientation="vertical">
+
+            <EditText
+                style="@style/Theme.IIYY.EditText"
+                android:id="@+id/com_write_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/com_write_layout_margin"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:hint="@string/com_write_hint_title"
+                android:autofillHints="@string/com_write_hint_title"/>
+
+            <include layout="@layout/divider"/>
+
+            <EditText
+                style="@style/Theme.IIYY.EditText"
+                android:id="@+id/com_write_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/com_write_layout_margin"
+                android:inputType="textMultiLine"
+                android:hint="@string/com_write_hint_content"
+                android:autofillHints="@string/com_write_hint_content"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/com_write_image_height"
+                android:layout_marginTop="@dimen/com_write_layout_margin">
+
+                <ImageView
+                    android:id="@+id/com_write_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:id="@+id/com_write_image_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:padding="@dimen/com_write_layout_margin"
+                    android:src="@drawable/ic_baseline_close_24"
+                    android:onClick="@{clickListener}"
+                    app:tint="@color/gray_500_a70"/>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

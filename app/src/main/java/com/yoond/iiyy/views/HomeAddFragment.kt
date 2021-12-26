@@ -68,7 +68,7 @@ class HomeAddFragment : Fragment() {
             )
             viewModel.insertSupplement(supplement)
             // 새 영양제 저장 후 종료
-            findNavController().navigateUp()
+            navigateUp()
         }
     }
 
@@ -80,5 +80,9 @@ class HomeAddFragment : Fragment() {
         cal.set(Calendar.SECOND, 0)
         cal.set(Calendar.MILLISECOND, 0)
         return cal.timeInMillis
+    }
+
+    private fun navigateUp() {
+        findNavController().navigateUp()
     }
 }

@@ -13,10 +13,12 @@ class CommunityRepository @Inject constructor() {
 
     fun getAllArticles(): CollectionReference = communityRef
 
+    fun getNewKey(): String {
+        // 자동 생성된 문서 id를 key로 사용하는 Community article을 만들기 위함
+        return communityRef.document().id
+    }
+
     fun insertArticle(article: Community) {
-        // 자동 생성된 문서 id를 article의 key로 사용
-        val key = communityRef.document().id
-        article.key = key
         communityRef.document(article.key).set(article)
     }
 

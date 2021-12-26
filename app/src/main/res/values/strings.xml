@@ -48,9 +48,16 @@
     <!-- Community RecycerView items의 시간을 표시하기 위한 format -->
     <string name="timeInMillisToDateTimeFormat">%1$tY.%1$tm.%1$td %1$tH:%1$tM</string>
 
+    <!-- Community_Write -->
+    <string name="com_write_hint_title">제목</string>
+    <string name="com_write_hint_content">내용</string>
+    <string name="com_write_no_title">제목을 입력하세요.</string>
+    <string name="com_write_no_content">내용을 입력하세요.</string>
+
     <!-- Menus -->
     <string name="menu_all_supplements">모든 영양제 목록</string>
     <string name="menu_done">완료</string>
+    <string name="menu_clip">이미지 첨부</string>
 
     <!-- AlertDialog button -->
     <string name="dialog_positive">확인</string>

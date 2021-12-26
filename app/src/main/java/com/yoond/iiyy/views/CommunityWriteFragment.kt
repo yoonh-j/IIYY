@@ -1,62 +1,112 @@
 package com.yoond.iiyy.views
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
+import android.view.*
+import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.yoond.iiyy.R
+import com.yoond.iiyy.data.Community
+import com.yoond.iiyy.databinding.FragmentCommunityWriteBinding
+import com.yoond.iiyy.utils.REQUEST_COMMUNITY_IMAGE
+import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CommunityWriteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class CommunityWriteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentCommunityWriteBinding
+    private val viewModel: CommunityViewModel by viewModels()
+    private var isImageSelected: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community_write, container, false)
+    ): View {
+        binding = FragmentCommunityWriteBinding.inflate(inflater, container, false)
+
+        init()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CommunityWriteFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CommunityWriteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_COMMUNITY_IMAGE && resultCode == RESULT_OK) {
+            binding.comWriteImage.setImageURI(data?.data)
+            setSelectedImage(true)
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_toolbar_com_write, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_com_write_clip -> {
+                selectPicture()
+                true
             }
+            R.id.menu_com_write_done -> {
+                upload()
+                // firebase에 업로드 후 종료
+                navigateUp()
+                true
+            }
+            else ->super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun init() {
+        setHasOptionsMenu(true)
+
+        binding.comWriteImage.isVisible = false
+        binding.comWriteImageDelete.isVisible = false
+        binding.setClickListener {
+            setSelectedImage(false)
+        }
+    }
+
+    private fun selectPicture() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_COMMUNITY_IMAGE)
+    }
+
+    private fun setSelectedImage(isSelected: Boolean) {
+        binding.comWriteImage.isVisible = isSelected
+        binding.comWriteImageDelete.isVisible= isSelected
+        isImageSelected = isSelected
+    }
+
+    private fun upload() {
+        val title = binding.comWriteTitle.text.toString()
+        val content = binding.comWriteContent.text.toString()
+
+        if (title == "") {
+            Toast.makeText(context, getString(R.string.com_write_no_title), Toast.LENGTH_LONG).show()
+        } else if (content == "") {
+            Toast.makeText(context, getString(R.string.com_write_no_content), Toast.LENGTH_LONG).show()
+        } else {
+            val uid = "5"
+            val key = viewModel.getNewKey()
+            val timeInMillis = Calendar.getInstance().timeInMillis
+            viewModel.insertArticle(
+                Community(key, uid, title, content, timeInMillis)
+            )
+            if (isImageSelected) uploadImage(key)
+        }
+    }
+
+    private fun uploadImage(key: String)  {
+        // TODO: firebase storage
+    }
+
+    private fun navigateUp() {
+        findNavController().navigateUp()
     }
 }

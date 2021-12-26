@@ -10,6 +10,8 @@ const val NOT_TAKEN = 2
 
 const val TAG_CALENDAR_DETAIL_DIALOG = "TAG_CALENDAR_DETAIL_DIALOG"
 
+const val REQUEST_COMMUNITY_IMAGE = 1001
+
 // firebase database
 const val COMMUNITY = "Community"
 const val COMMENT = "Comment"

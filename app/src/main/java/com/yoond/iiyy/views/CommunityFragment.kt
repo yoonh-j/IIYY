@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
 import com.yoond.iiyy.adapters.CommunityListAdapter
-import com.yoond.iiyy.data.Community
 import com.yoond.iiyy.databinding.FragmentCommunityBinding
 import com.yoond.iiyy.decorators.ListDecoration
 import com.yoond.iiyy.viewmodels.CommunityViewModel
@@ -60,6 +60,6 @@ class CommunityFragment : Fragment() {
     }
 
     private fun navigateToCommunityWrite() {
-        // TODO: navigateToCommunityWrite
+        findNavController().navigate(R.id.action_community_fragment_to_community_write_fragment)
     }
 }

@@ -36,4 +36,8 @@
     <!-- Community -->
     <dimen name="item_com_pading">20dp</dimen>
     <dimen name="item_com_margin_detail">10dp</dimen>
+
+    <!-- Community_Write -->
+    <dimen name="com_write_layout_margin">20dp</dimen>
+    <dimen name="com_write_image_height">200dp</dimen>
 </resources>

@@ -38,6 +38,8 @@ class CommunityViewModel @Inject constructor(
         return allArticles
     }
 
+    fun getNewKey()  = repository.getNewKey()
+
     fun deleteArticle(article: Community) {
         repository.deleteArticle(article)
     }
