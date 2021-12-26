@@ -9,3 +9,8 @@ const val PARTIALLY_TAKEN = 1
 const val NOT_TAKEN = 2
 
 const val TAG_CALENDAR_DETAIL_DIALOG = "TAG_CALENDAR_DETAIL_DIALOG"
+
+// firebase database
+const val COMMUNITY = "Community"
+const val COMMENT = "Comment"
+const val TIME_IN_MILLIS = "timeInMillis"

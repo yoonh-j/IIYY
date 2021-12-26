@@ -37,7 +37,6 @@ class CommunityListAdapter()
         fun bind(item: Community) {
             binding.apply {
                 community = item
-                timeInMillis = item.timeInMillis
             }
         }
     }

@@ -7,9 +7,6 @@
             name="community"
             type="com.yoond.iiyy.data.Community" />
         <variable
-            name="timeInMillis"
-            type="long" />
-        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
     </data>
@@ -38,7 +35,7 @@
             android:layout_marginTop="@dimen/item_com_margin_detail"
             android:maxLines="1"
             android:ellipsize="end"
-            android:text="@{community.article}"
+            android:text="@{community.content}"
             app:layout_constraintTop_toBottomOf="@id/item_com_title"/>
 
         <TextView
@@ -46,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_com_margin_detail"
-            android:text="@{@string/timeInMillisToDateTimeFormat(timeInMillis)}"
+            android:text="@{@string/timeInMillisToDateTimeFormat(community.timeInMillis)}"
             android:textColor="@color/gray_500"
             app:layout_constraintTop_toBottomOf="@id/item_com_article"
             app:layout_constraintBottom_toBottomOf="parent"/>
