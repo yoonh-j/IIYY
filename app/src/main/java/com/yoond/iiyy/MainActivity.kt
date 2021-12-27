@@ -2,6 +2,7 @@ package com.yoond.iiyy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -19,21 +20,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
-        initBottomNavBar()
+        initNavigation()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
 
-    private fun initBottomNavBar() {
+    private fun initNavigation() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.nav_home_add) {
+            if (destination.id == R.id.nav_home_add || destination.id == R.id.nav_community_write) {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
+                binding.bottomNav.visibility = View.GONE
             } else {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+                binding.bottomNav.visibility = View.VISIBLE
             }
         }
         binding.bottomNav.setupWithNavController(navController)

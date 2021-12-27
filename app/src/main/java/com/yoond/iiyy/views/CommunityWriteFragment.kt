@@ -2,6 +2,8 @@ package com.yoond.iiyy.views
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
@@ -11,12 +13,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
 import com.yoond.iiyy.data.Community
 import com.yoond.iiyy.databinding.FragmentCommunityWriteBinding
 import com.yoond.iiyy.utils.REQUEST_COMMUNITY_IMAGE
 import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 @AndroidEntryPoint
@@ -33,6 +37,11 @@ class CommunityWriteFragment : Fragment() {
 
         init()
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_community_write))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -64,6 +73,7 @@ class CommunityWriteFragment : Fragment() {
 
     private fun init() {
         setHasOptionsMenu(true)
+        (activity as MainActivity).setBackButtonVisible(true)
 
         binding.comWriteImage.isVisible = false
         binding.comWriteImageDelete.isVisible = false
@@ -92,6 +102,7 @@ class CommunityWriteFragment : Fragment() {
         } else if (content == "") {
             Toast.makeText(context, getString(R.string.com_write_no_content), Toast.LENGTH_LONG).show()
         } else {
+            // TODO: get uid from firebase auth
             val uid = "5"
             val key = viewModel.getNewKey()
             val timeInMillis = Calendar.getInstance().timeInMillis
@@ -103,7 +114,13 @@ class CommunityWriteFragment : Fragment() {
     }
 
     private fun uploadImage(key: String)  {
-        // TODO: firebase storage
+        val bitmap = (binding.comWriteImage.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos)
+        val data = baos.toByteArray()
+
+        viewModel.insertImage(key, data)
     }
 
     private fun navigateUp() {

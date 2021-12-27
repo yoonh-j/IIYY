@@ -62,7 +62,7 @@
     <fragment
         android:id="@+id/nav_community_write"
         android:name="com.yoond.iiyy.views.CommunityWriteFragment"
-        android:label=""
+        android:label="@string/title_community_write"
         tools:layout="@layout/fragment_community_write">
         <argument
             android:name="articleKey"

@@ -22,6 +22,7 @@
     <string name="title_home_add">영양제 추가</string>
     <string name="title_calendar">월별 기록</string>
     <string name="title_community">커뮤니티</string>
+    <string name="title_community_write">새 글 작성</string>
     <string name="title_preference">설정</string>
 
     <!-- Home -->
