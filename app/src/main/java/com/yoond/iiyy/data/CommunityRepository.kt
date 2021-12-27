@@ -83,7 +83,6 @@ class CommunityRepository @Inject constructor() {
                         val item = doc.toObject(Comment::class.java)
                         list.add(item)
                     }
-                    Log.d("COMMUNITY_VIEW_MODEL", list.toString())
                     allComments.value = list
                 }
             }

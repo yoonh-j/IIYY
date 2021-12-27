@@ -6,6 +6,18 @@
     app:startDestination="@id/nav_home">
 
     <fragment
+        android:id="@+id/nav_login"
+        android:name="com.yoond.iiyy.views.LoginFragment"
+        android:label=""
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_fragment_to_home_fragment"
+            app:destination="@id/nav_home"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_home"
         android:name="com.yoond.iiyy.views.HomeFragment"
         android:label="@string/title_home"

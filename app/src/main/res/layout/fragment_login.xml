@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="loginListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="googleListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="signUpListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+    <LinearLayout
+        style="@style/Theme.IIYY.BaseLayoutPadding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?colorSurface">
+
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <EditText
+            style="@style/Theme.IIYY.EditText"
+            android:id="@+id/login_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_layout_margin"
+            android:padding="@dimen/login_input_padding"
+            android:hint="@string/login_hint_id"
+            android:textColorHint="@color/gray_500_a70"/>
+
+        <include layout="@layout/divider"/>
+
+        <EditText
+            style="@style/Theme.IIYY.EditText"
+            android:id="@+id/login_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_layout_margin"
+            android:padding="@dimen/login_input_padding"
+            android:hint="@string/login_hint_pwd"
+            android:textColorHint="@color/gray_500_a70"/>
+
+        <include layout="@layout/divider"/>
+
+        <TextView
+            android:id="@+id/login_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_signup_margin"
+            android:gravity="center"
+            android:onClick="@{signUpListener}"
+            android:text="@string/login_signup"
+            android:textColor="@color/gray_500"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_signup_margin"
+            android:background="@drawable/bg_btn"
+            android:backgroundTint="?colorPrimary"
+            android:text="@string/login_btn_login"
+            android:textColor="@color/white"
+            android:onClick="@{loginListener}"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_google_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_layout_margin"
+            android:background="@drawable/bg_google_btn"
+            android:text="@string/login_btn_google"
+            android:textColor="?colorOnSurface"
+            android:drawableStart="@drawable/googleg_standard_color_18"
+            android:onClick="@{googleListener}"/>
+    </LinearLayout>
+</layout>

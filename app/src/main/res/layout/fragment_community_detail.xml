@@ -27,7 +27,7 @@
             android:layout_marginBottom="@dimen/com_detail_comment_height">
 
             <LinearLayout
-                style="@style/Theme.IIYY.BaseLayoutMargin"
+                style="@style/Theme.IIYY.BaseLayoutPadding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/com_detail_layout_margin"

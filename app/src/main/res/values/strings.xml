@@ -17,6 +17,8 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+    <string name="toast_back_pressed">\'뒤로가기\'를 한 번 더 누르면 종료됩니다.</string>
+
     <!-- Fragment Titles(Labels) -->
     <string name="title_home">오늘의 영양제</string>
     <string name="title_home_add">영양제 추가</string>
@@ -24,6 +26,13 @@
     <string name="title_community">커뮤니티</string>
     <string name="title_community_write">새 글 작성</string>
     <string name="title_preference">설정</string>
+
+    <!-- Login -->
+    <string name="login_hint_id">아이디</string>
+    <string name="login_hint_pwd">비밀번호</string>
+    <string name="login_btn_login">로그인</string>
+    <string name="login_btn_google">구글 계정으로 로그인</string>
+    <string name="login_signup"><u>회원가입</u></string>
 
     <!-- Home -->
     <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>

@@ -31,8 +31,8 @@
 
     <style name="Theme.IIYY.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
-    <style name="Theme.IIYY.BaseLayoutMargin">
-        <item name="android:layout_margin">@dimen/base_layout_margin</item>
+    <style name="Theme.IIYY.BaseLayoutPadding">
+        <item name="android:padding">@dimen/base_layout_padding</item>
     </style>
 
     <style name="Theme.IIYY.ListItemMargin">
