@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
+import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setBackPressed()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,5 +46,11 @@ class LoginFragment : Fragment() {
     private fun navigateToHome() {
         val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         navController.navigate(destination)
+    }
+
+    private fun setBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(this) {
+            activity?.finish()
+        }?.isEnabled
     }
 }

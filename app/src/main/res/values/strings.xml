@@ -17,7 +17,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <string name="toast_back_pressed">\'뒤로가기\'를 한 번 더 누르면 종료됩니다.</string>
 
     <!-- Fragment Titles(Labels) -->
     <string name="title_home">오늘의 영양제</string>
@@ -38,6 +37,7 @@
     <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>
     <string name="home_delete_confirm">삭제하시겠습니까?</string>
     <string name="home_description_fab">새 영양제 추가</string>
+    <string name="home_toast_back_pressed">\'뒤로가기\'를 한 번 더 누르면 종료됩니다.</string>
 
     <!-- Home RecyclerView items의 시간을 표시하기 위한 format -->
     <string name="timeInMillisToTimeFormat">%1$tp %1$tI:%1$tM</string>

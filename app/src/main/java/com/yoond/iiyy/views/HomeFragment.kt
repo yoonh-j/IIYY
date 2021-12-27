@@ -28,6 +28,12 @@ class HomeFragment :
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: SupplementListViewModel by viewModels()
+    private var pressedTimeInMillis: Long = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setBackPressed()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,5 +98,17 @@ class HomeFragment :
 
     private fun navigateToHomeAdd() {
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeAddFragment())
+    }
+
+    // 뒤로가기를 두 번 연속으로 누르면 종료
+    private fun setBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(this) {
+            if (System.currentTimeMillis() - pressedTimeInMillis > 2000) {
+                pressedTimeInMillis = System.currentTimeMillis()
+                Toast.makeText(context, resources.getString(R.string.home_toast_back_pressed), Toast.LENGTH_SHORT).show()
+            } else {
+                activity?.finish()
+            }
+        }?.isEnabled
     }
 }

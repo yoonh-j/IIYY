@@ -5,14 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.yoond.iiyy.databinding.ActivityMainBinding
-import com.yoond.iiyy.views.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private var pressedTimeInMillis: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
-    }
-
-    override fun onBackPressed() {
-        if (navController.currentDestination?.id == R.id.nav_home) {
-            if (System.currentTimeMillis() - pressedTimeInMillis > 2000) {
-                pressedTimeInMillis = System.currentTimeMillis()
-                Toast.makeText(this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT).show()
-            } else {
-                finish()
-            }
-        } else {
-            super.onBackPressed()
-        }
     }
 
     private fun initNavigation() {
