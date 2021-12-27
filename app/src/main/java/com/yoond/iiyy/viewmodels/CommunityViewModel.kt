@@ -1,10 +1,10 @@
 package com.yoond.iiyy.viewmodels
 
-import android.util.Log
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.Query
+import com.yoond.iiyy.data.Comment
 import com.yoond.iiyy.data.Community
 import com.yoond.iiyy.data.CommunityRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,41 +14,32 @@ import javax.inject.Inject
 class CommunityViewModel @Inject constructor(
     private val repository: CommunityRepository
 ): ViewModel() {
-    private var allArticles: MutableLiveData<List<Community>> = MutableLiveData()
 
-    fun getAllArticles(): LiveData<List<Community>> {
+    fun getArticle(key: String): MutableLiveData<Community> =
+        repository.getArticle(key)
+
+    fun getAllArticles(): LiveData<List<Community>> =
         repository.getAllArticles()
-            .orderBy("timeInMillis", Query.Direction.DESCENDING) // 등록 시간 역순으로 가져옴
-            .addSnapshotListener { value, error ->
-            if (error != null) {
-                Log.e(TAG, "Listen failed", error)
-                allArticles.value = null
 
-                return@addSnapshotListener
-            }
-            val list = mutableListOf<Community>()
-            if (value != null) {
-                for (doc in value) {
-                    val item = doc.toObject(Community::class.java)
-                    list.add(item)
-                }
-                allArticles.value = list
-            }
-        }
-        return allArticles
-    }
+    fun getAllComments(key: String): LiveData<List<Comment>> =
+        repository.getAllComments(key)
 
-    fun getNewKey()  = repository.getNewKey()
+    fun getImageUri(key: String): LiveData<Uri> =
+        repository.getImageUri(key)
 
-    fun deleteArticle(article: Community) {
+    fun getNewArticleKey()  = repository.getNewArticleKey()
+
+    fun getNewCommentKey(articleKey: String) = repository.getNewCommentKey(articleKey)
+
+    fun deleteArticle(article: Community) =
         repository.deleteArticle(article)
-    }
 
-    fun insertArticle(article: Community) {
+    fun insertArticle(article: Community) =
         repository.insertArticle(article)
-    }
 
-    companion object {
-        private const val TAG = "COMMUNITY_VIEW_MODEL"
-    }
+    fun insertImage(key: String, data: ByteArray) =
+        repository.insertImage(key, data)
+
+    fun insertComment(articleKey: String, commentKey: String, comment: Comment) =
+        repository.insertComment(articleKey, commentKey, comment)
 }

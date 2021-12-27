@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -100,11 +99,11 @@ class CommunityWriteFragment : Fragment() {
         if (title == "") {
             Toast.makeText(context, getString(R.string.com_write_no_title), Toast.LENGTH_LONG).show()
         } else if (content == "") {
-            Toast.makeText(context, getString(R.string.com_write_no_content), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.com_no_content), Toast.LENGTH_LONG).show()
         } else {
             // TODO: get uid from firebase auth
             val uid = "5"
-            val key = viewModel.getNewKey()
+            val key = viewModel.getNewArticleKey()
             val timeInMillis = Calendar.getInstance().timeInMillis
             viewModel.insertArticle(
                 Community(key, uid, title, content, timeInMillis)

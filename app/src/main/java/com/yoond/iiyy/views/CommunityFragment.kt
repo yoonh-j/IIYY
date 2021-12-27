@@ -16,7 +16,7 @@ import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CommunityFragment : Fragment() {
+class CommunityFragment : Fragment(), CommunityListAdapter.OnArticleClickListener {
 
     private lateinit var binding: FragmentCommunityBinding
     private val viewModel: CommunityViewModel by viewModels()
@@ -36,8 +36,12 @@ class CommunityFragment : Fragment() {
         (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_community))
     }
 
+    override fun onClick(articleKey: String) {
+        navigateToCommunityDetail(articleKey)
+    }
+
     private fun init() {
-        val adapter = CommunityListAdapter()
+        val adapter = CommunityListAdapter(this)
         binding.comRecycler.adapter = adapter
         subscribeUi(adapter)
 
@@ -60,6 +64,12 @@ class CommunityFragment : Fragment() {
     }
 
     private fun navigateToCommunityWrite() {
-        findNavController().navigate(R.id.action_community_fragment_to_community_write_fragment)
+        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityWriteFragment()
+        findNavController().navigate(direction)
+    }
+
+    private fun navigateToCommunityDetail(articleKey: String) {
+        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityDetailFragment(articleKey)
+        findNavController().navigate(direction)
     }
 }

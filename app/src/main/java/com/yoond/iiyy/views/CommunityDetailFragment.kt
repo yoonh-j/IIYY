@@ -5,58 +5,91 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.yoond.iiyy.MainActivity
 import com.yoond.iiyy.R
+import com.yoond.iiyy.adapters.CommentListAdapter
+import com.yoond.iiyy.data.Comment
+import com.yoond.iiyy.databinding.FragmentCommunityDetailBinding
+import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CommunityDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class CommunityDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentCommunityDetailBinding
+    private val viewModel: CommunityViewModel by viewModels()
+    private val args: CommunityDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community_detail, container, false)
+    ): View {
+        binding = FragmentCommunityDetailBinding.inflate(inflater, container, false)
+
+        init()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CommunityDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CommunityDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun init() {
+        subscribeUi()
+        binding.setClickListener {
+            uploadComment()
+        }
+        (activity as MainActivity).setBackButtonVisible(true)
+    }
+
+    private fun subscribeUi() {
+        val key = args.articleKey
+
+        viewModel.getArticle(key).observe(viewLifecycleOwner) { article ->
+            binding.article = article
+        }
+        viewModel.getAllComments(key).observe(viewLifecycleOwner) { comments ->
+            if (comments == null) {
+                binding.hasComment = false
+            } else {
+                binding.hasComment = true
+                setAdapter(comments)
             }
+        }
+        viewModel.getImageUri(key).observe(viewLifecycleOwner) { uri ->
+            if (uri == null) {
+                binding.hasImage = false
+            } else {
+                binding.hasImage = true
+                Glide.with(this)
+                    .load(uri)
+                    .into(binding.comDetailImage)
+            }
+        }
+    }
+
+    private fun setAdapter(comments: List<Comment>) {
+        val adapter = CommentListAdapter()
+        binding.comDetailRecycler.adapter = adapter
+        adapter.submitList(comments)
+    }
+
+    private fun uploadComment() {
+        val comment = binding.comDetailCommentInput.text.toString()
+
+        if (comment == "") {
+            Toast.makeText(context, resources.getString(R.string.com_no_content), Toast.LENGTH_SHORT).show()
+        } else {
+            val articleKey = args.articleKey
+            val key = viewModel.getNewCommentKey(articleKey)
+            // TODO: uid by firebase auth
+            val uid = "5"
+            val timeInMillis = Calendar.getInstance().timeInMillis
+
+            viewModel.insertComment(articleKey, key, Comment(key, uid, comment, timeInMillis))
+
+            binding.comDetailCommentInput.setText("")
+            (activity as MainActivity).hideKeyboard()
+        }
     }
 }

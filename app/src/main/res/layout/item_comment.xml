@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="comment"
+            type="com.yoond.iiyy.data.Comment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/divider"/>
+
+        <TextView
+            android:id="@+id/item_comment_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_comment_margin"
+            android:text="@{comment.comment}"/>
+
+        <TextView
+            android:id="@+id/item_comment_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_comment_margin"
+            android:layout_marginBottom="@dimen/item_comment_margin"
+            android:text="@{@string/timeInMillisToDateTimeFormat(comment.timeInMillis)}"
+            android:textColor="@color/gray_500"/>
+    </LinearLayout>
+</layout>

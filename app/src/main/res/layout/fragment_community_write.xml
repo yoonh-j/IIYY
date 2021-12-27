@@ -12,9 +12,9 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            style="@style/Theme.IIYY.BaseLayoutMargin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/com_write_layout_margin"
             android:orientation="vertical">
 
             <EditText

@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yoond.iiyy.data.Community
 import com.yoond.iiyy.databinding.ItemCommunityBinding
 
-class CommunityListAdapter()
-    : ListAdapter<Community, RecyclerView.ViewHolder>(CommunityDiffCallback()) {
+class CommunityListAdapter(
+    val onArticleClickListener: OnArticleClickListener
+) : ListAdapter<Community, RecyclerView.ViewHolder>(CommunityDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         CommunityViewHolder(
             ItemCommunityBinding.inflate(
@@ -25,20 +26,25 @@ class CommunityListAdapter()
         (holder as CommunityViewHolder).bind(com)
     }
 
-    class CommunityViewHolder(
+    inner class CommunityViewHolder(
         private val binding: ItemCommunityBinding
     ): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                Log.d("COMMUNITY_LIST_ADAPTER", binding.itemComTitle.text.toString())
+                val item = binding.community
+                if (item != null) {
+                    onArticleClickListener.onClick(item.key)
+                }
             }
         }
 
         fun bind(item: Community) {
-            binding.apply {
-                community = item
-            }
+            binding.community = item
         }
+    }
+
+    interface OnArticleClickListener {
+        fun onClick(articleKey: String)
     }
 }
 

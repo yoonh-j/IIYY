@@ -67,6 +67,8 @@ class HomeAddFragment : Fragment() {
                 false
             )
             viewModel.insertSupplement(supplement)
+
+            (activity as MainActivity).hideKeyboard()
             // 새 영양제 저장 후 종료
             navigateUp()
         }

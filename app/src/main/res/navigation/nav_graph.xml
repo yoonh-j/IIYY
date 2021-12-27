@@ -19,16 +19,16 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_calendar"
-        android:name="com.yoond.iiyy.views.CalendarFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar"/>
-
-    <fragment
         android:id="@+id/nav_home_add"
         android:name="com.yoond.iiyy.views.HomeAddFragment"
         android:label="@string/title_home_add"
         tools:layout="@layout/fragment_home_add"/>
+
+    <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.yoond.iiyy.views.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar"/>
 
     <fragment
         android:id="@+id/nav_community"
@@ -64,9 +64,6 @@
         android:name="com.yoond.iiyy.views.CommunityWriteFragment"
         android:label="@string/title_community_write"
         tools:layout="@layout/fragment_community_write">
-        <argument
-            android:name="articleKey"
-            app:argType="string"/>
     </fragment>
 
     <fragment

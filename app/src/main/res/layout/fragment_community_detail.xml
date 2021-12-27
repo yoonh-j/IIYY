@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.CommunityDetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="article"
+            type="com.yoond.iiyy.data.Community" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="hasImage"
+            type="boolean" />
+        <variable
+            name="hasComment"
+            type="boolean" />
+    </data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="com_Detail" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/com_detail_comment_height">
+
+            <LinearLayout
+                style="@style/Theme.IIYY.BaseLayoutMargin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/com_detail_layout_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/com_detail_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/timeInMillisToDateTimeFormat(article.timeInMillis)}"
+                    android:textColor="@color/gray_500"/>
+
+                <TextView
+                    android:id="@+id/com_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/com_detail_layout_margin"
+                    android:text="@{article.title}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                <TextView
+                    android:id="@+id/com_detail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/com_detail_layout_margin"
+                    android:text="@{article.content}"/>
+
+                <ImageView
+                    android:id="@+id/com_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/com_detail_layout_margin"
+                    android:layout_height="wrap_content"
+                    isGone="@{!hasImage}"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/com_detail_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/com_detail_layout_margin"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_comment"
+                    isGone="@{!hasComment}"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/com_detail_comment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/com_detail_comment_height"
+            android:background="?attr/colorSurface"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include layout="@layout/divider"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                style="@style/Theme.IIYY.EditText"
+                android:id="@+id/com_detail_comment_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/com_detail_layout_margin"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/com_detail_hint_comment"
+                android:autofillHints="@string/com_detail_hint_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/com_detail_comment_done"/>
+
+            <ImageView
+                android:id="@+id/com_detail_comment_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/com_detail_layout_margin"
+                android:paddingEnd="@dimen/com_detail_layout_margin"
+                android:src="@drawable/ic_baseline_done_24"
+                android:onClick="@{clickListener}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="?attr/colorOnSurface" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

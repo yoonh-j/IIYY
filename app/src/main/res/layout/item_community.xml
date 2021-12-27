@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/item_com_pading"
+        android:padding="@dimen/item_com_padding"
         android:background="@drawable/bg_list_item"
         android:onClick="@{clickListener}">
 

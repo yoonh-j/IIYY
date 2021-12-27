@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="base_layout_margin">10dp</dimen>
+    <dimen name="base_layout_margin">20dp</dimen>
 
     <dimen name="divier_height">0.1dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
@@ -34,8 +34,13 @@
     <item name="dialog_height_ratio" format="float" type="dimen">0.6</item>
 
     <!-- Community -->
-    <dimen name="item_com_pading">20dp</dimen>
+    <dimen name="item_com_padding">20dp</dimen>
     <dimen name="item_com_margin_detail">10dp</dimen>
+
+    <!-- Community_Detail -->
+    <dimen name="com_detail_layout_margin">20dp</dimen>
+    <dimen name="com_detail_comment_height">50dp</dimen>
+    <dimen name="item_comment_margin">10dp</dimen>
 
     <!-- Community_Write -->
     <dimen name="com_write_layout_margin">20dp</dimen>
