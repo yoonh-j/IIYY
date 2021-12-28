@@ -1,17 +1,21 @@
 package com.yoond.iiyy.views
 
-import android.content.Context
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.yoond.iiyy.MainActivity
+import com.yoond.iiyy.R
 import com.yoond.iiyy.databinding.FragmentLoginBinding
 import com.yoond.iiyy.viewmodels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +38,29 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         init()
+        observeLoggedIn()
+
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == CODE_GOOGLE_LOGIN && data != null) {
+            GoogleSignIn.getSignedInAccountFromIntent(data)
+                .addOnSuccessListener { account ->
+                    viewModel.loginWithGoogle(account.idToken!!)
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        context,
+                        resources.getString(R.string.auth_toast_login_failed),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.e(TAG, "LoginWithGoogle failed", e)
+                }
+        }
+        Log.d(TAG, requestCode.toString() + " " + resultCode.toString() + " " + (data == null))
     }
 
     private fun init() {
@@ -44,10 +70,26 @@ class LoginFragment : Fragment() {
             login()
         }
         binding.setGoogleListener {
-
+            loginByGoogle()
         }
         binding.setSignUpListener {
 
+        }
+    }
+
+    private fun observeLoggedIn() {
+        viewModel.getLoggedIn().observe(viewLifecycleOwner) { loggedIn ->
+            Log.d("LOGIN_FRAGMENT", loggedIn.toString() + " " + viewModel.getUser().value?.email)
+            if (loggedIn) {
+                navigateToHome()
+            }
+        }
+    }
+    private fun observeUser() {
+        viewModel.getUser().observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                navigateToHome()
+            }
         }
     }
 
@@ -66,8 +108,23 @@ class LoginFragment : Fragment() {
         val email = binding.loginId.text.toString()
         val pwd = binding.loginPwd.text.toString()
 
-        viewModel.login(email, pwd)
-        navigateToHome()
-        (activity as MainActivity).hideKeyboard()
+        if (email == "") {
+            Toast.makeText(context, resources.getString(R.string.login_toast_no_id), Toast.LENGTH_LONG).show()
+        } else if (pwd == "") {
+            Toast.makeText(context, resources.getString(R.string.login_toast_no_pwd), Toast.LENGTH_LONG).show()
+        } else {
+            viewModel.login(email, pwd)
+            (activity as MainActivity).hideKeyboard()
+        }
+    }
+
+    private fun loginByGoogle() {
+        val intent = viewModel.getGoogleClient().signInIntent
+        startActivityForResult(intent, CODE_GOOGLE_LOGIN)
+    }
+
+    companion object {
+        private const val CODE_GOOGLE_LOGIN = 9000
+        private const val TAG = "LOGIN_FRAGMENT"
     }
 }

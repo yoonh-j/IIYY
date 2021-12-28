@@ -45,8 +45,10 @@ class CommunityWriteFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_COMMUNITY_IMAGE && resultCode == RESULT_OK) {
-            binding.comWriteImage.setImageURI(data?.data)
+        if (requestCode == REQUEST_COMMUNITY_IMAGE &&
+            resultCode == RESULT_OK &&
+            data != null) {
+            binding.comWriteImage.setImageURI(data.data)
             setSelectedImage(true)
         }
     }

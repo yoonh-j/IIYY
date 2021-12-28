@@ -82,5 +82,10 @@
         android:id="@+id/nav_preference"
         android:name="com.yoond.iiyy.views.PreferenceFragment"
         android:label="@string/title_preference"
-        tools:layout="@layout/fragment_preference"/>
+        tools:layout="@layout/fragment_preference">
+
+        <action
+            android:id="@+id/action_preference_fragment_to_login_fragment"
+            app:destination="@id/nav_login"/>
+    </fragment>
 </navigation>

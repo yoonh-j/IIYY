@@ -1,6 +1,7 @@
 package com.yoond.iiyy.viewmodels
 
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.yoond.iiyy.data.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,11 +13,15 @@ class AuthViewModel @Inject constructor(
 
     fun getUser() = repository.getUser()
 
-    fun getLoggedOut() = repository.getLoggedOut()
+    fun getGoogleClient() = repository.getGoogleClient()
+
+    fun getLoggedIn() = repository.getLoggedIn()
 
     fun signUp(email: String, pwd: String) = repository.signUp(email, pwd)
 
     fun login(email: String, pwd: String) = repository.login(email, pwd)
+
+    fun loginWithGoogle(idToken: String) = repository.loginWithGoogle(idToken)
 
     fun logout() = repository.logout()
 }
