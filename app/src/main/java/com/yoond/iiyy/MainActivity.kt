@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.nav_login) {
+            if (destination.id == R.id.nav_login || destination.id == R.id.nav_signup) {
                 supportActionBar?.hide()
                 binding.bottomNav.visibility = View.GONE
             } else if (destination.id == R.id.nav_home_add ||

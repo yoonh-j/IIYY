@@ -30,13 +30,21 @@
     <string name="title_preference">설정</string>
 
     <!-- Login -->
-    <string name="login_hint_id">아이디</string>
+    <string name="login_hint_email">이메일</string>
     <string name="login_hint_pwd">비밀번호</string>
-    <string name="login_toast_no_id">아이디를 입력하세요.</string>
+    <string name="login_toast_no_email">이메일를 입력하세요.</string>
     <string name="login_toast_no_pwd">비밀번호를 입력하세요.</string>
     <string name="login_btn_login">로그인</string>
     <string name="login_btn_google">구글 계정으로 로그인</string>
     <string name="login_signup"><u>회원가입</u></string>
+
+    <!-- SignUp -->
+    <string name="signup_hint_pwd">비밀번호(6자리 이상)</string>
+    <string name="signup_hint_pwd_check">비밀번호 확인</string>
+    <string name="signup_confirm">회원가입</string>
+    <string name="signup_cancel">취소</string>
+    <string name="signup_toast_no_match">비밀번호가 일치하지 않습니다.</string>
+    <string name="signup_toast_too_short">비밀번호는 6자리 이상이어야 합니다.</string>
 
     <!-- Home -->
     <string name="home_no_item">오늘 섭취할 영양제가 없습니다.</string>

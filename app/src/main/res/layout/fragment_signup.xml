@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="loginListener"
+            name="confirmListener"
             type="android.view.View.OnClickListener" />
         <variable
-            name="googleListener"
-            type="android.view.View.OnClickListener" />
-        <variable
-            name="signUpListener"
+            name="cancelListener"
             type="android.view.View.OnClickListener" />
     </data>
+
     <LinearLayout
         style="@style/Theme.IIYY.BaseLayoutPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?colorSurface">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/login_logo"
@@ -28,10 +26,10 @@
 
         <EditText
             style="@style/Theme.IIYY.EditText"
-            android:id="@+id/login_email"
+            android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
+            android:layout_marginTop="@dimen/signup_layout_margin"
             android:padding="@dimen/login_input_padding"
             android:hint="@string/login_hint_email"
             android:textColorHint="@color/gray_500_a70"/>
@@ -40,47 +38,49 @@
 
         <EditText
             style="@style/Theme.IIYY.EditText"
-            android:id="@+id/login_pwd"
+            android:id="@+id/signup_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
+            android:layout_marginTop="@dimen/signup_layout_margin"
             android:padding="@dimen/login_input_padding"
             android:inputType="textPassword"
-            android:hint="@string/login_hint_pwd"
+            android:hint="@string/signup_hint_pwd"
             android:textColorHint="@color/gray_500_a70"/>
 
         <include layout="@layout/divider"/>
 
-        <TextView
-            android:id="@+id/login_signup"
+        <EditText
+            style="@style/Theme.IIYY.EditText"
+            android:id="@+id/signup_pwd_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/login_signup_margin"
-            android:paddingBottom="@dimen/login_signup_margin"
-            android:gravity="center"
-            android:onClick="@{signUpListener}"
-            android:text="@string/login_signup"
-            android:textColor="@color/gray_500"/>
+            android:layout_marginTop="@dimen/signup_layout_margin"
+            android:padding="@dimen/login_input_padding"
+            android:inputType="textPassword"
+            android:hint="@string/signup_hint_pwd_check"
+            android:textColorHint="@color/gray_500_a70"/>
+
+        <include layout="@layout/divider"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_btn"
+            android:id="@+id/signup_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/signup_btn_margin"
             android:background="@drawable/bg_btn"
             android:backgroundTint="?colorPrimary"
-            android:text="@string/login_btn_login"
+            android:text="@string/signup_confirm"
             android:textColor="@color/white"
-            android:onClick="@{loginListener}"/>
+            android:onClick="@{confirmListener}"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_google_btn"
+            android:id="@+id/signup_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
-            android:background="@drawable/bg_google_btn"
-            android:text="@string/login_btn_google"
+            android:layout_marginTop="@dimen/signup_layout_margin"
+            android:background="@drawable/bg_btn_cancel"
+            android:text="@string/signup_cancel"
             android:textColor="?colorOnSurface"
-            android:drawableStart="@drawable/googleg_standard_color_18"
-            android:onClick="@{googleListener}"/>
+            android:onClick="@{cancelListener}"/>
     </LinearLayout>
 </layout>

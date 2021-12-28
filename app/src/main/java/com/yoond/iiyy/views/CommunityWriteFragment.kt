@@ -17,6 +17,7 @@ import com.yoond.iiyy.R
 import com.yoond.iiyy.data.Community
 import com.yoond.iiyy.databinding.FragmentCommunityWriteBinding
 import com.yoond.iiyy.utils.REQUEST_COMMUNITY_IMAGE
+import com.yoond.iiyy.viewmodels.AuthViewModel
 import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -25,7 +26,8 @@ import java.util.*
 @AndroidEntryPoint
 class CommunityWriteFragment : Fragment() {
     private lateinit var binding: FragmentCommunityWriteBinding
-    private val viewModel: CommunityViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
+    private val comViewModel: CommunityViewModel by viewModels()
     private var isImageSelected: Boolean = false
 
     override fun onCreateView(
@@ -103,14 +105,17 @@ class CommunityWriteFragment : Fragment() {
         } else if (content == "") {
             Toast.makeText(context, getString(R.string.com_no_content), Toast.LENGTH_LONG).show()
         } else {
-            // TODO: get uid from firebase auth
-            val uid = "5"
-            val key = viewModel.getNewArticleKey()
-            val timeInMillis = Calendar.getInstance().timeInMillis
-            viewModel.insertArticle(
-                Community(key, uid, title, content, timeInMillis)
-            )
-            if (isImageSelected) uploadImage(key)
+            val user = authViewModel.getUser().value
+
+            if (user != null) {
+                val uid = user.uid
+                val key = comViewModel.getNewArticleKey()
+                val timeInMillis = Calendar.getInstance().timeInMillis
+                comViewModel.insertArticle(
+                    Community(key, uid, title, content, timeInMillis)
+                )
+                if (isImageSelected) uploadImage(key)
+            }
         }
     }
 
@@ -121,7 +126,7 @@ class CommunityWriteFragment : Fragment() {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos)
         val data = baos.toByteArray()
 
-        viewModel.insertImage(key, data)
+        comViewModel.insertImage(key, data)
     }
 
     private fun navigateUp() {

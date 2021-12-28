@@ -1,20 +1,21 @@
 {
   "project_info": {
     "project_number": "885346884293",
+    "firebase_url": "https://iiyy-1a4aa-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "iiyy-1a4aa",
     "storage_bucket": "iiyy-1a4aa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:885346884293:android:d1e8f4ca51897a6a626eac",
+        "mobilesdk_app_id": "1:885346884293:android:28741a3a0069e764626eac",
         "android_client_info": {
           "package_name": "com.yoond.iiyy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "885346884293-d7k44his7ueojcjj43hmuiahlkeestju.apps.googleusercontent.com",
+          "client_id": "885346884293-oaqr3guu9g9iafj8lcgpsg7737p31s5b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.yoond.iiyy",

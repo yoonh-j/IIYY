@@ -14,6 +14,7 @@ import com.yoond.iiyy.R
 import com.yoond.iiyy.adapters.CommentListAdapter
 import com.yoond.iiyy.data.Comment
 import com.yoond.iiyy.databinding.FragmentCommunityDetailBinding
+import com.yoond.iiyy.viewmodels.AuthViewModel
 import com.yoond.iiyy.viewmodels.CommunityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -21,7 +22,8 @@ import java.util.*
 @AndroidEntryPoint
 class CommunityDetailFragment : Fragment() {
     private lateinit var binding: FragmentCommunityDetailBinding
-    private val viewModel: CommunityViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
+    private val comViewModel: CommunityViewModel by viewModels()
     private val args: CommunityDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -45,10 +47,10 @@ class CommunityDetailFragment : Fragment() {
     private fun subscribeUi() {
         val key = args.articleKey
 
-        viewModel.getArticle(key).observe(viewLifecycleOwner) { article ->
+        comViewModel.getArticle(key).observe(viewLifecycleOwner) { article ->
             binding.article = article
         }
-        viewModel.getAllComments(key).observe(viewLifecycleOwner) { comments ->
+        comViewModel.getAllComments(key).observe(viewLifecycleOwner) { comments ->
             if (comments == null) {
                 binding.hasComment = false
             } else {
@@ -56,7 +58,7 @@ class CommunityDetailFragment : Fragment() {
                 setAdapter(comments)
             }
         }
-        viewModel.getImageUri(key).observe(viewLifecycleOwner) { uri ->
+        comViewModel.getImageUri(key).observe(viewLifecycleOwner) { uri ->
             if (uri == null) {
                 binding.hasImage = false
             } else {
@@ -80,13 +82,16 @@ class CommunityDetailFragment : Fragment() {
         if (comment == "") {
             Toast.makeText(context, resources.getString(R.string.com_no_content), Toast.LENGTH_SHORT).show()
         } else {
-            val articleKey = args.articleKey
-            val key = viewModel.getNewCommentKey(articleKey)
-            // TODO: uid by firebase auth
-            val uid = "5"
-            val timeInMillis = Calendar.getInstance().timeInMillis
+            val user = authViewModel.getUser().value
 
-            viewModel.insertComment(articleKey, key, Comment(key, uid, comment, timeInMillis))
+            if (user != null) {
+                val uid = user.uid
+                val articleKey = args.articleKey
+                val key = comViewModel.getNewCommentKey(articleKey)
+                val timeInMillis = Calendar.getInstance().timeInMillis
+
+                comViewModel.insertComment(articleKey, key, Comment(key, uid, comment, timeInMillis))
+            }
 
             binding.comDetailCommentInput.setText("")
             (activity as MainActivity).hideKeyboard()

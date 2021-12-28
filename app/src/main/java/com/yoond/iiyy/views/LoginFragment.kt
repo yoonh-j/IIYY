@@ -1,6 +1,5 @@
 package com.yoond.iiyy.views
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -73,43 +72,24 @@ class LoginFragment : Fragment() {
             loginByGoogle()
         }
         binding.setSignUpListener {
-
+            navigateToSignup()
         }
     }
 
     private fun observeLoggedIn() {
         viewModel.getLoggedIn().observe(viewLifecycleOwner) { loggedIn ->
-            Log.d("LOGIN_FRAGMENT", loggedIn.toString() + " " + viewModel.getUser().value?.email)
             if (loggedIn) {
                 navigateToHome()
             }
         }
     }
-    private fun observeUser() {
-        viewModel.getUser().observe(viewLifecycleOwner) { user ->
-            if (user != null) {
-                navigateToHome()
-            }
-        }
-    }
-
-    private fun navigateToHome() {
-        val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-        navController.navigate(destination)
-    }
-
-    private fun setBackPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(this) {
-            activity?.finish()
-        }?.isEnabled
-    }
 
     private fun login() {
-        val email = binding.loginId.text.toString()
+        val email = binding.loginEmail.text.toString()
         val pwd = binding.loginPwd.text.toString()
 
         if (email == "") {
-            Toast.makeText(context, resources.getString(R.string.login_toast_no_id), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, resources.getString(R.string.login_toast_no_email), Toast.LENGTH_LONG).show()
         } else if (pwd == "") {
             Toast.makeText(context, resources.getString(R.string.login_toast_no_pwd), Toast.LENGTH_LONG).show()
         } else {
@@ -121,6 +101,22 @@ class LoginFragment : Fragment() {
     private fun loginByGoogle() {
         val intent = viewModel.getGoogleClient().signInIntent
         startActivityForResult(intent, CODE_GOOGLE_LOGIN)
+    }
+
+    private fun navigateToSignup() {
+        val destination = LoginFragmentDirections.actionLoginFragmentToSignupFragment()
+        navController.navigate(destination)
+    }
+
+    private fun navigateToHome() {
+        val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        navController.navigate(destination)
+    }
+
+    private fun setBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(this) {
+            activity?.finish()
+        }?.isEnabled
     }
 
     companion object {

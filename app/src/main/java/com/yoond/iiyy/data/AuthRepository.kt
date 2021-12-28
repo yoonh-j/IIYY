@@ -53,6 +53,7 @@ class AuthRepository @Inject constructor(
                 loggedIn.postValue(true)
             }
             .addOnFailureListener { e ->
+                user.postValue(null)
                 loggedIn.postValue(false)
                 Toast.makeText(
                     application.applicationContext,
@@ -70,6 +71,7 @@ class AuthRepository @Inject constructor(
                 loggedIn.postValue(true)
             }
             .addOnFailureListener { e ->
+                user.postValue(null)
                 loggedIn.postValue(false)
                 Toast.makeText(
                     application.applicationContext,
@@ -88,6 +90,7 @@ class AuthRepository @Inject constructor(
                 loggedIn.postValue(true)
             }
             .addOnFailureListener { e ->
+                user.postValue(null)
                 loggedIn.postValue(false)
                 Toast.makeText(
                     application.applicationContext,
@@ -100,6 +103,7 @@ class AuthRepository @Inject constructor(
 
     fun logout() {
         auth.signOut()
+        user.postValue(null)
         loggedIn.postValue(false)
     }
 
