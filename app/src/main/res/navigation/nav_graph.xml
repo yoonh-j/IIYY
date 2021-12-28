@@ -86,6 +86,14 @@
         <argument
             android:name="articleKey"
             app:argType="string"/>
+        <argument
+            android:name="articleUid"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_community_detail_fragment_to_community_write_fragment"
+            app:destination="@id/nav_community_write"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
     <fragment
@@ -93,6 +101,9 @@
         android:name="com.yoond.iiyy.views.CommunityWriteFragment"
         android:label="@string/title_community_write"
         tools:layout="@layout/fragment_community_write">
+        <argument
+            android:name="articleKey"
+            app:argType="string"/>
     </fragment>
 
     <fragment

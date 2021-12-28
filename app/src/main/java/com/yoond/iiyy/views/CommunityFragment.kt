@@ -36,8 +36,8 @@ class CommunityFragment : Fragment(), CommunityListAdapter.OnArticleClickListene
         (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_community))
     }
 
-    override fun onClick(articleKey: String) {
-        navigateToCommunityDetail(articleKey)
+    override fun onClick(articleKey: String, articleUid: String) {
+        navigateToCommunityDetail(articleKey, articleUid)
     }
 
     private fun init() {
@@ -64,12 +64,12 @@ class CommunityFragment : Fragment(), CommunityListAdapter.OnArticleClickListene
     }
 
     private fun navigateToCommunityWrite() {
-        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityWriteFragment()
+        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityWriteFragment("")
         findNavController().navigate(direction)
     }
 
-    private fun navigateToCommunityDetail(articleKey: String) {
-        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityDetailFragment(articleKey)
+    private fun navigateToCommunityDetail(articleKey: String, articleUid: String) {
+        val direction = CommunityFragmentDirections.actionCommunityFragmentToCommunityDetailFragment(articleKey, articleUid)
         findNavController().navigate(direction)
     }
 }

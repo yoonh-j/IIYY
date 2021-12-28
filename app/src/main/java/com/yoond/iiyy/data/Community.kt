@@ -8,8 +8,8 @@ import kotlinx.parcelize.Parcelize
 data class Community(
     var key: String = "",
     val uid: String,
-    val title: String,
-    val content: String,
+    var title: String,
+    var content: String,
     val timeInMillis: Long
 ): Parcelable {
 

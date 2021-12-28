@@ -33,7 +33,7 @@ class CommunityListAdapter(
             binding.setClickListener {
                 val item = binding.community
                 if (item != null) {
-                    onArticleClickListener.onClick(item.key)
+                    onArticleClickListener.onClick(item.key, item.uid)
                 }
             }
         }
@@ -44,7 +44,7 @@ class CommunityListAdapter(
     }
 
     interface OnArticleClickListener {
-        fun onClick(articleKey: String)
+        fun onClick(articleKey: String, articleUid: String)
     }
 }
 
