@@ -100,6 +100,7 @@ class CommunityWriteFragment : Fragment() {
                 } else {
                     upload()
                 }
+                (activity as MainActivity).hideKeyboard()
                 navigateUp()
                 true
             }

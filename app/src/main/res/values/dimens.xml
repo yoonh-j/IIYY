@@ -2,6 +2,7 @@
 <resources>
     <dimen name="base_layout_padding">20dp</dimen>
 
+    <dimen name="logo_size">150dp</dimen>
     <dimen name="divder_height">0.5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
