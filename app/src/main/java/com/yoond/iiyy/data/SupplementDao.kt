@@ -17,14 +17,11 @@ interface SupplementDao {
     @Delete
     fun deleteSupplement(supplement: Supplement)
 
-    @Query("select * from supplements order by timeInMillis")
-    fun getAllSupplements(): LiveData<List<Supplement>>
+    @Query("select * from supplements where timeInMillis >= :startTimeInMillis and timeInMillis < :endTimeInMillis order by timeInMillis")
+    fun getTodaySupplements(startTimeInMillis: Long, endTimeInMillis: Long): LiveData<List<Supplement>>
 
-    @Query("select * from supplements where timeInMillis >= :startTimeInMillis and timeInMillis < :endTimeInMillis")
+    @Query("select * from supplements where timeInMillis >= :startTimeInMillis and timeInMillis < :endTimeInMillis order by timeInMillis")
     fun getSupplementsByTimeInMillis(startTimeInMillis: Long, endTimeInMillis: Long): List<Supplement>
-
-    @Query("select * from supplements where id = :id")
-    fun getSupplement(id: String): LiveData<Supplement>
 
     @Query("select status from supplements where timeInMillis >= :startTimeInMillis and timeInMillis < :endTimeInMillis")
     fun getTotalState(startTimeInMillis: Long, endTimeInMillis: Long): LiveData<Boolean>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.yoond.iiyy.data.Supplement
 import com.yoond.iiyy.data.SupplementRepository
+import com.yoond.iiyy.utils.getTodayStartInMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class SupplementListViewModel @Inject constructor(
     private val repository: SupplementRepository
 ) : ViewModel() {
-    val supplements: LiveData<List<Supplement>> = repository.getAllSupplements()
+    val supplements: LiveData<List<Supplement>> = repository.getTodaySupplements()
 
     suspend fun getSupplementsByTimeInMillis(timeInMillis: Long): List<Supplement> =
         withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {

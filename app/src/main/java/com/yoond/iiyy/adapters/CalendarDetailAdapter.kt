@@ -39,7 +39,7 @@ class CalendarDetailAdapter()
 
 private class CalendarDetailDiffCallback : DiffUtil.ItemCallback<Supplement>() {
     override fun areItemsTheSame(oldItem: Supplement, newItem: Supplement): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.timeInMillis == newItem.timeInMillis
     }
 
     override fun areContentsTheSame(oldItem: Supplement, newItem: Supplement): Boolean {

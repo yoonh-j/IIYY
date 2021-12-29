@@ -30,32 +30,19 @@ abstract class AppDatabase : RoomDatabase() {
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
+                            // initial database
                             Executors.newSingleThreadExecutor().execute(
                                 Runnable {
                                     instance?.supplementDao()?.insertSupplementList(
                                         listOf(
-                                            Supplement("MSM", 1640081700000, false),
-                                            Supplement("오메가3", 1639537800000,  true),
-                                            Supplement("비타민B", 1636956600000,  false),
-                                            Supplement("Alpha GPC", 1605412080000, true),
-                                            Supplement("비타민C", 1640081700000, false),
-                                            Supplement("종합비타민", 1640185200000, true),
-                                            Supplement("프로틴", 1640271599000, true),
-                                            Supplement("루테인", 1640271600000, false)
-                                        )
-                                    )
-                                    instance?.stateDao()?.insertStateList(
-                                        listOf(
-                                            State(1635692400000, 1),
-                                            State(1636902000000, 0),
-                                            State(1636988400000, 2),
-                                            State(1638284400000, 0),
-                                            State(1638370800000, 1),
-                                            State(1639494000000, 2),
-                                            State(1639580400000, 1),
-                                            State(1639666800000, 1),
-                                            State(1639926000000, 0),
-                                            State(1640185200000, 1)
+                                            Supplement("MSM", 1640707860000, false),
+                                            Supplement("오메가3", 1640715300000,  true),
+                                            Supplement("비타민B", 1640736000000,  false),
+                                            Supplement("Alpha GPC", 1640742300000, true),
+                                            Supplement("비타민C", 1640742900000, false),
+                                            Supplement("종합비타민", 1640742900000, true),
+                                            Supplement("프로틴", 1640775300000, true),
+                                            Supplement("루테인", 1640772000000, false)
                                         )
                                     )
                                 }

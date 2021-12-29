@@ -71,7 +71,7 @@ class SupplementAdapter(
 
 private class SupplementDiffCallback : DiffUtil.ItemCallback<Supplement>() {
     override fun areItemsTheSame(oldItem: Supplement, newItem: Supplement) =
-        oldItem.id == newItem.id
+        oldItem.timeInMillis == newItem.timeInMillis
 
     override fun areContentsTheSame(oldItem: Supplement, newItem: Supplement) =
         oldItem == newItem

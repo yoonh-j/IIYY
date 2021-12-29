@@ -39,8 +39,8 @@ class CalendarFragment : Fragment() {
     ): View {
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
 
-        initCalendar()
         subscribeUi()
+        initCalendar()
         (activity as MainActivity).setBackButtonVisible(false)
         return binding.root
     }
@@ -48,13 +48,14 @@ class CalendarFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).setToolbarTitle(resources.getString(R.string.title_calendar))
+
+        setCalendarDecorators()
     }
 
     private fun subscribeUi() {
         calViewModel.states.observe(viewLifecycleOwner) { states ->
             if (!states.isNullOrEmpty()) {
                 calViewModel.getStateLists(states)
-                setCalendarStates()
             }
         }
     }
@@ -76,7 +77,7 @@ class CalendarFragment : Fragment() {
         }
     }
 
-    private fun setCalendarStates() {
+    private fun setCalendarDecorators() {
         val selectDrawable = ResourcesCompat.getDrawable(resources, R.drawable.bg_cal_select, null)
         val dotRadius = ResourcesCompat.getFloat(resources, R.dimen.item_cal_dot_radius)
         val todaySize = ResourcesCompat.getFloat(resources, R.dimen.item_cal_today_size)
