@@ -25,31 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
-                .addCallback(
-                    object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            // initial database
-                            Executors.newSingleThreadExecutor().execute(
-                                Runnable {
-                                    instance?.supplementDao()?.insertSupplementList(
-                                        listOf(
-                                            Supplement("MSM", 1640707860000, false),
-                                            Supplement("오메가3", 1640715300000,  true),
-                                            Supplement("비타민B", 1640736000000,  false),
-                                            Supplement("Alpha GPC", 1640742300000, true),
-                                            Supplement("비타민C", 1640742900000, false),
-                                            Supplement("종합비타민", 1640742900000, true),
-                                            Supplement("프로틴", 1640775300000, true),
-                                            Supplement("루테인", 1640772000000, false)
-                                        )
-                                    )
-                                }
-                            )
-                        }
-                    }
-                ).build()
+            return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME).build()
         }
     }
 }

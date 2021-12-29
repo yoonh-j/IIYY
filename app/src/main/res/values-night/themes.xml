@@ -31,6 +31,15 @@
 
     <style name="Theme.IIYY.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
+    <style name="Theme.IIYY.LicenseActivity" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- action bar color -->
+        <item name="colorPrimary">@color/dark_gray</item>
+        <!-- status bar color -->
+        <item name="colorPrimaryDark">@color/dark_gray</item>
+        <!-- navigation bar color -->
+        <item name="android:navigationBarColor" tools:targetApi="27">@color/dark_gray</item>
+    </style>
+
     <style name="Theme.IIYY.BaseLayoutPadding">
         <item name="android:padding">@dimen/base_layout_padding</item>
     </style>

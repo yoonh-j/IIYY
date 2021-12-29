@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -12,78 +13,88 @@
             name="signUpListener"
             type="android.view.View.OnClickListener" />
     </data>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Theme.IIYY.BaseLayoutPadding"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?colorSurface">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/login_logo"
             android:layout_width="@dimen/logo_size"
             android:layout_height="@dimen/logo_size"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_logo"/>
+            android:src="@drawable/ic_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_layout"/>
 
-        <EditText
-            style="@style/Theme.IIYY.EditText"
-            android:id="@+id/login_email"
+        <LinearLayout
+            android:id="@+id/login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
-            android:padding="@dimen/login_input_padding"
-            android:inputType="textEmailAddress"
-            android:hint="@string/login_hint_email"
-            android:autofillHints="@string/login_hint_email"
-            android:textColorHint="@color/gray_500_a70"/>
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/login_logo"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <include layout="@layout/divider"/>
+            <EditText
+                style="@style/Theme.IIYY.EditText"
+                android:id="@+id/login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_layout_margin"
+                android:padding="@dimen/login_input_padding"
+                android:inputType="textEmailAddress"
+                android:hint="@string/login_hint_email"
+                android:autofillHints="@string/login_hint_email"
+                android:textColorHint="@color/gray_500_a70"/>
 
-        <EditText
-            style="@style/Theme.IIYY.EditText"
-            android:id="@+id/login_pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
-            android:padding="@dimen/login_input_padding"
-            android:inputType="textPassword"
-            android:hint="@string/login_hint_pwd"
-            android:autofillHints="@string/login_hint_pwd"
-            android:textColorHint="@color/gray_500_a70"/>
+            <include layout="@layout/divider"/>
 
-        <include layout="@layout/divider"/>
+            <EditText
+                style="@style/Theme.IIYY.EditText"
+                android:id="@+id/login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_layout_margin"
+                android:padding="@dimen/login_input_padding"
+                android:inputType="textPassword"
+                android:hint="@string/login_hint_pwd"
+                android:autofillHints="@string/login_hint_pwd"
+                android:textColorHint="@color/gray_500_a70"/>
 
-        <TextView
-            android:id="@+id/login_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/login_signup_margin"
-            android:paddingBottom="@dimen/login_signup_margin"
-            android:gravity="center"
-            android:onClick="@{signUpListener}"
-            android:text="@string/login_signup"
-            android:textColor="@color/gray_500"/>
+            <include layout="@layout/divider"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn"
-            android:backgroundTint="?colorPrimary"
-            android:text="@string/login_btn_login"
-            android:textColor="@color/white"
-            android:onClick="@{loginListener}"/>
+            <TextView
+                android:id="@+id/login_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/login_signup_margin"
+                android:paddingBottom="@dimen/login_signup_margin"
+                android:gravity="center"
+                android:onClick="@{signUpListener}"
+                android:text="@string/login_signup"
+                android:textColor="@color/gray_500"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_google_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_layout_margin"
-            android:background="@drawable/bg_google_btn"
-            android:text="@string/login_btn_google"
-            android:textColor="?colorOnSurface"
-            android:drawableStart="@drawable/googleg_standard_color_18"
-            android:onClick="@{googleListener}"/>
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="?colorPrimary"
+                android:text="@string/login_btn_login"
+                android:textColor="@color/white"
+                android:onClick="@{loginListener}"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_google_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_layout_margin"
+                android:background="@drawable/bg_google_btn"
+                android:text="@string/login_btn_google"
+                android:textColor="?colorOnSurface"
+                android:drawableStart="@drawable/googleg_standard_color_18"
+                android:onClick="@{googleListener}"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -32,7 +32,18 @@
     </style>
 
     <style name="Theme.IIYY.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
-    
+
+    <style name="Theme.IIYY.LicenseActivity" parent="Theme.AppCompat.Light">
+        <!-- action bar color -->
+        <item name="colorPrimary">@color/white</item>
+        <!-- status bar and icon color -->
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- navigation bar and icon color -->
+        <item name="android:navigationBarColor" tools:targetApi="27">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
     <style name="Theme.IIYY.BaseLayoutPadding">
         <item name="android:padding">@dimen/base_layout_padding</item>
     </style>

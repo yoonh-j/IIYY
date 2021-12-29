@@ -59,7 +59,6 @@ class LoginFragment : Fragment() {
                     Log.e(TAG, "LoginWithGoogle failed", e)
                 }
         }
-        Log.d(TAG, requestCode.toString() + " " + resultCode.toString() + " " + (data == null))
     }
 
     private fun init() {
