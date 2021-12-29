@@ -12,14 +12,10 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_fragment_to_signup_fragment"
-            app:destination="@id/nav_signup"
-            app:popEnterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim"/>
+            app:destination="@id/nav_signup"/>
         <action
             android:id="@+id/action_login_fragment_to_home_fragment"
-            app:destination="@id/nav_home"
-            app:popEnterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim"/>
+            app:destination="@id/nav_home"/>
     </fragment>
 
     <fragment
@@ -29,9 +25,7 @@
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signup_fragment_to_home_fragment"
-            app:destination="@id/nav_home"
-            app:popEnterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim"/>
+            app:destination="@id/nav_home"/>
     </fragment>
 
     <fragment
@@ -43,8 +37,10 @@
         <action
             android:id="@+id/action_home_fragment_to_home_add_fragment"
             app:destination="@+id/nav_home_add"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
 
     <fragment
@@ -68,14 +64,18 @@
         <action
             android:id="@+id/action_community_fragment_to_community_detail_fragment"
             app:destination="@id/nav_community_detail"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim"/>
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
 
         <action
             android:id="@+id/action_community_fragment_to_community_write_fragment"
             app:destination="@id/nav_community_write"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
 
     <fragment
@@ -92,8 +92,10 @@
         <action
             android:id="@+id/action_community_detail_fragment_to_community_write_fragment"
             app:destination="@id/nav_community_write"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
 
     <fragment
